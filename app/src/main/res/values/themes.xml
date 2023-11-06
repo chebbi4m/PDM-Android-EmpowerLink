@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.PDM" parent="Theme.Material3.Light.NoActionBar">
+
+
+    </style>
+
+    <style name="Theme.PDM" parent="Base.Theme.PDM" />
+    <style name="Circular">
+        <item name="cornerSize">50%</item>
+    </style>
+
+</resources>
