@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "PDM"
+rootProject.name = "opportunity_pdm"
 include(":app")
  

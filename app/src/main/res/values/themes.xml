@@ -1,18 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.PDM" parent="Theme.Material3.Light.NoActionBar">
-
-
+    <style name="Base.Theme.Opportunity_pdm" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.PDM" parent="Base.Theme.PDM" />
-    <style name="Circular">
-        <item name="cornerSize">50%</item>
-    </style>
-    <style name="OutlinedBoxBGLB" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-        <item name="boxStrokeColor">@color/blue</item>
-        <item name="android:textColorHint">@color/blue</item>
-        <item name="hintTextColor">@color/blue</item>
-    </style>
-
+    <style name="Theme.Opportunity_pdm" parent="Base.Theme.Opportunity_pdm" />
 </resources>
