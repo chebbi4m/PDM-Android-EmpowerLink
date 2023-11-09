@@ -13,18 +13,14 @@ interface Apiuser {
 
     @POST("user/login")
     fun login(@Body user: User): Call<User>
-    companion object{
-        var BASE_URL = "http://localhost:9090/"
-        fun create() : Apiuser {
 
+    companion object {
+        var BASE_URL = "http://10.0.2.2:9090/"
+        fun create(): Apiuser {
             val retrofit = Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(BASE_URL).build()
-            return  retrofit.create(Apiuser::class.java)
-
-
+            return retrofit.create(Apiuser::class.java)
         }
-
     }
-
 }
