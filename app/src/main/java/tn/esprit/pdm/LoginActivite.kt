@@ -2,6 +2,8 @@ package tn.esprit.pdm
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 
 import android.util.Log
 import android.util.Patterns
@@ -33,19 +35,71 @@ class LoginActivite : AppCompatActivity() {
     private lateinit var sessionManager: SessionManager
     private lateinit var binding: LoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
         super.onCreate(savedInstanceState)
-
         verifToken()
+
+
+
+
+
+
+
+
+
+
+
+
+
         binding = LoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+
+        binding.tiEmail.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                return
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                validateEmail()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                return
+            }
+        })
+
+        binding.tiPassword.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                return
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                validePassword()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                return
+            }
+        })
+
+
+
+
+
+
+
+
+
 
 
         binding.btnLogin.setOnClickListener() {
             loginFunction()
         }
+        binding.btnForgotPassword.setOnClickListener(){
+            startActivity(Intent(this, ForgetPasswordActivity::class.java))
 
+        }
 
         //startActivity(Intent(this, HomeActivity::class.java))
     }
@@ -74,7 +128,14 @@ class LoginActivite : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<JsonObject>, t: Throwable) {}
+                override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                    Snackbar.make(
+                        binding.root,
+                        "Failed to perform login. Please try again.",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+
+                }
             }
             )
         }
@@ -108,7 +169,7 @@ class LoginActivite : AppCompatActivity() {
     }
 
     private fun validateEmail(): Boolean {
-        /* binding.tiEmailLayout.isErrorEnabled = false
+        binding.tiEmailLayout.isErrorEnabled = false
 
         if (binding.tiEmail.text.toString().isEmpty()) {
             binding.tiEmailLayout.error = getString(R.string.msg_must_not_be_empty)
@@ -118,14 +179,8 @@ class LoginActivite : AppCompatActivity() {
             binding.tiEmailLayout.isErrorEnabled = false
         }
 
-        if (Patterns.EMAIL_ADDRESS.matcher(binding.tiEmail.text.toString()).matches()) {
-            binding.tiEmailLayout.error = getString(R.string.msg_check_your_email)
-            binding.tiEmail.requestFocus()
-            return false
-        }else{
-            binding.tiEmailLayout.isErrorEnabled = false
-        }
-*/
+
+
         return true
     }
 

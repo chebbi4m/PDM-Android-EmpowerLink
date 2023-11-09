@@ -4,7 +4,9 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.util.ArrayMap
 import android.util.Log
 import android.util.Patterns
@@ -27,24 +29,11 @@ import retrofit2.Call
 import retrofit2.Response
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
+import tn.esprit.gamer.utils.MyStatics
 
 class SignUpActivity : AppCompatActivity() {
 
-    lateinit var fullname: TextInputEditText
-    lateinit var email: TextInputEditText
-    lateinit var txtLayoutPassword: TextInputLayout
-    lateinit var password: TextInputEditText
-    lateinit var txtLayoutPasswordConfirmed: TextInputLayout
-    lateinit var txtLayoutLogin: TextInputLayout
-    lateinit var txtPasswordConfirmed: TextInputEditText
-    lateinit var txtLayoutName: TextInputLayout
 
-    lateinit var btnLogin: Button
-
-    lateinit var mainIntent : Intent
-    lateinit var buttonLogin: TextView
-    var gson = Gson()
-    lateinit var mSharedPref: SharedPreferences
 
 
     private lateinit var binding: ActivitySignUpBinding
@@ -53,69 +42,72 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        password = findViewById(R.id.tiPassword)
-        email = findViewById(R.id.tiEmail)
-        fullname = findViewById(R.id.tiFullName)
-        btnLogin = findViewById(R.id.signup)
-        txtLayoutPassword = findViewById(R.id.tiPasswordLayout)
-        txtLayoutLogin = findViewById(R.id.tiEmailLayout)
-        txtLayoutName = findViewById(R.id.tiFullNameLayout)
-        txtPasswordConfirmed = findViewById(R.id.tiConfirmPassword)
-        txtLayoutPasswordConfirmed = findViewById(R.id.tiConfirmPasswordLayout)
-
-
         val contextView = findViewById<View>(R.id.context_view)
 
+        binding.tiFullName.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                return
+            }
 
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                validateFullName()
+            }
 
+            override fun afterTextChanged(s: Editable?) {
+                return
+            }
+        })
 
+        binding.tiEmail.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                return
+            }
 
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                validateEmail()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                return
+            }
+        })
+
+        binding.tiPassword.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                return
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                validatePassword()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                return
+            }
+        })
+
+        binding.tiConfirmPassword.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                return
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                validateConfirmPassword()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                return
+            }
+        })
 
         binding.signup.setOnClickListener {
-            txtLayoutLogin.error = null
-            txtLayoutPassword.error = null
-            txtLayoutName.error = null
-            txtLayoutPasswordConfirmed.error = null
-
-
-
-
-            if (fullname.text!!.isEmpty()) {
-                txtLayoutName.error = "must not be empty"
-                return@setOnClickListener
+            MyStatics.hideKeyboard(this, binding.signup)
+            if (validateFullName() && validateEmail() && validatePassword() && validateConfirmPassword()){
+                startActivity(Intent(this, HomeActivity::class.java))
+            }else{
+                Snackbar.make(contextView, getString(R.string.msg_error_inputs), Snackbar.LENGTH_SHORT).show()
             }
-            if (email.text!!.isEmpty()) {
-                txtLayoutLogin!!.error = "must not be empty"
-                return@setOnClickListener
-            }
-            if (!isEmailValid(email.text.toString())) {
-                txtLayoutLogin!!.error = "Check your email !"
-
-                return@setOnClickListener
-            }
-            if (password.text!!.isEmpty()) {
-                txtLayoutPassword!!.error = "must not be empty"
-                return@setOnClickListener
-            }
-
-            if (txtPasswordConfirmed.text!!.isEmpty()) {
-                txtLayoutPasswordConfirmed!!.error = "must not be empty"
-                return@setOnClickListener
-            }
-
-            if (password.text.toString() != txtPasswordConfirmed!!.text.toString()) {
-                txtLayoutPassword.error = "Password don't match"
-                txtLayoutPasswordConfirmed.error = "Password don't match"
-                return@setOnClickListener
-            }
-
-
-            mainIntent = Intent(this, HomeActivity::class.java)
-
-            doLogin()
         }
-
-
 
         binding.btnTermsAndPolicy.setOnClickListener {
             Snackbar.make(contextView, getString(R.string.msg_coming_soon), Snackbar.LENGTH_SHORT).show()
@@ -223,41 +215,6 @@ class SignUpActivity : AppCompatActivity() {
 
         return true
     }
-    /*private fun register() {
-        // Valider les champs du formulaire
-        if (validateFullName() && validateEmail() && validatePassword()) {
-            // Créer un objet User avec les données du formulaire
-            val user = User(
-                id = "", // L'ID sera généré côté serveur
-                username = binding.tiFullName.text.toString(),
-                email = binding.tiEmail.text.toString(),
-                password = binding.tiPassword.text.toString(),
-                address = null, // Ou une valeur par défaut
-                birthday = null, // Ou une valeur par défaut
-                firstname = null, // Ou une valeur par défaut
-                lastname = null, // Ou une valeur par défaut
-                image = null, // Ou une valeur par défaut
-                number = null, // Ou une valeur par défaut
-                reason = null, // Ou une valeur par défaut
-                resetCode = null // Ou une valeur par défaut
-            )
-
-            // Créer une instance de l'interface Apiuser
-            // val apiuser = Apiuser.cr
-
-            // Appel à l'API pour l'enregistrement de l'utilisateur
-            //val call = apiuser.registerUser(user)
-
-            // Envoi de la requête de manière asynchrone
+}
 
 
-        }}*/
-    fun isEmailValid(email: String?): Boolean {
-        return !(email == null || TextUtils.isEmpty(email)) && Patterns.EMAIL_ADDRESS.matcher(email)
-            .matches()
-    }
-
-    private fun doLogin(){
-
-
-}}
