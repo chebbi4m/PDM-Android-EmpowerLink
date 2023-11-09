@@ -28,7 +28,7 @@ class ForgetPasswordActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                //validateEmail()
+                validateEmail()
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -49,26 +49,27 @@ class ForgetPasswordActivity : AppCompatActivity() {
 
         }
 
-       /* private fun validateEmail(): Boolean {
+
+    }
+    private fun validateEmail(): Boolean {
+        binding.tiEmailLayout.isErrorEnabled = false
+
+        if (binding.tiEmail.text.toString().isEmpty()) {
+
+            binding.tiEmail.requestFocus()
+            return false
+        } else {
             binding.tiEmailLayout.isErrorEnabled = false
+        }
 
-            if (binding.tiEmail.text.toString().isEmpty()) {
+        if (Patterns.EMAIL_ADDRESS.matcher(binding.tiEmail.text.toString()).matches()) {
 
-                binding.tiEmail.requestFocus()
-                return false
-            } else {
-                binding.tiEmailLayout.isErrorEnabled = false
-            }
+            binding.tiEmail.requestFocus()
+            return false
+        } else {
+            binding.tiEmailLayout.isErrorEnabled = false
+        }
 
-            if (Patterns.EMAIL_ADDRESS.matcher(binding.tiEmail.text.toString()).matches()) {
-
-                binding.tiEmail.requestFocus()
-                return false
-            } else {
-                binding.tiEmailLayout.isErrorEnabled = false
-            }
-
-            return true
-        }*/
+        return true
     }
 }

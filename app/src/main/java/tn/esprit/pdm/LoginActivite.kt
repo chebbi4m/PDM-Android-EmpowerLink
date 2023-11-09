@@ -1,36 +1,60 @@
 package tn.esprit.pdm
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.telecom.Call
 import android.text.Editable
 import android.text.TextWatcher
+
+import android.util.Log
 import android.util.Patterns
-import android.view.View
+
 import androidx.appcompat.app.AppCompatActivity
+import com.auth0.android.jwt.DecodeException
+import com.auth0.android.jwt.JWT
 import com.google.android.material.snackbar.Snackbar
-import com.google.gson.Gson
-import tn.esprit.gamer.utils.MyStatics
-import tn.esprit.pdm.databinding.ActivityForgetPasswordBinding
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
+
+import retrofit2.Response
 import tn.esprit.pdm.databinding.LoginBinding
-import tn.esprit.pdm.models.User
+
+
+
+import retrofit2.Call
+import tn.esprit.pdm.models.LoginRequest
+import tn.esprit.pdm.uikotlin.SessionManager
 import tn.esprit.pdm.utils.Apiuser
-import javax.security.auth.callback.Callback
+import java.util.Date
+
+
+
 
 class LoginActivite : AppCompatActivity() {
 
+    val apiuser = Apiuser.create()
+    private lateinit var sessionManager: SessionManager
     private lateinit var binding: LoginBinding
-    private lateinit var mSharedPref: SharedPreferences
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        val apiuser= Apiuser.create()
-       // apiuser.login().enqueue(object :Callback<User>)
         super.onCreate(savedInstanceState)
+        verifToken()
+
+
+
+
+
+
+
+
+
+
+
+
+
         binding = LoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val contextView = findViewById<View>(R.id.context_view)
+
+
+
         binding.tiEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 return
@@ -51,46 +75,97 @@ class LoginActivite : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                validatePassword()
+                validePassword()
             }
 
             override fun afterTextChanged(s: Editable?) {
                 return
             }
         })
-        binding.btnLogin.setOnClickListener {
 
 
+
+
+
+
+
+
+
+
+
+        binding.btnLogin.setOnClickListener() {
+            loginFunction()
         }
-
-
-
-        binding.btnForgotPassword.setOnClickListener {
+        binding.btnForgotPassword.setOnClickListener(){
             startActivity(Intent(this, ForgetPasswordActivity::class.java))
+
         }
-
-        binding.btnFacebookLogin.setOnClickListener {
-            Snackbar.make(contextView, getString(R.string.msg_coming_soon), Snackbar.LENGTH_SHORT)
-//                .setAction("ACTION") {
-//                    // Responds to click on the action
-//                }
-                .show()
-        }
-
-        binding.btnGoogleLogin.setOnClickListener {
-            Snackbar.make(contextView, getString(R.string.msg_coming_soon), Snackbar.LENGTH_SHORT)
-//                .setAction("ACTION") {
-//                    // Responds to click on the action
-//                }
-                .show()
-        }
-
-
-
-
-
 
         //startActivity(Intent(this, HomeActivity::class.java))
+    }
+
+    private fun loginFunction() {
+        if (validateEmail() && validePassword()) {
+            var LoginRequest =
+                LoginRequest(binding.tiEmail.text.toString(), binding.tiPassword.text.toString())
+
+            apiuser.seConnecter(LoginRequest).enqueue(object : retrofit2.Callback<JsonObject> {
+                override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                    if (response.isSuccessful) {
+                        sessionManager.setLogin(true)
+                        sessionManager.setUserId(response.body()?.get("token").toString())
+                        val intent = Intent(this@LoginActivite, ProfileActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        val errorBody = response.errorBody()?.string()
+                        val errorJsonObject = JsonParser.parseString(errorBody).asJsonObject
+                        if (errorJsonObject.has("message")) {
+                            val errorMessage = errorJsonObject.get("message").asString
+                            Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_LONG).show()
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                    Snackbar.make(
+                        binding.root,
+                        "Failed to perform login. Please try again.",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+
+                }
+            }
+            )
+        }
+    }
+
+
+    private fun verifToken() {
+        sessionManager = SessionManager(this)
+        val token = sessionManager.getUserId().toString();
+        Log.d("Token", token)
+        if (!token.isNullOrBlank()) {
+            try {
+                val jwt = JWT(token)
+                val expireDate: Date? = jwt.expiresAt
+
+                if (expireDate != null) {
+                    if (Date().after(expireDate)) {
+                        sessionManager.logout()
+                    } else {
+                        val intent = Intent(this, HomeActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+            } catch (exception: DecodeException) {
+                sessionManager.logout()
+                Log.d("Error", exception.toString())
+            }
+        }
     }
 
     private fun validateEmail(): Boolean {
@@ -104,18 +179,13 @@ class LoginActivite : AppCompatActivity() {
             binding.tiEmailLayout.isErrorEnabled = false
         }
 
-        if (Patterns.EMAIL_ADDRESS.matcher(binding.tiEmail.text.toString()).matches()) {
-            binding.tiEmailLayout.error = getString(R.string.msg_check_your_email)
-            binding.tiEmail.requestFocus()
-            return false
-        }else{
-            binding.tiEmailLayout.isErrorEnabled = false
-        }
+
 
         return true
     }
 
-    private fun validatePassword(): Boolean {
+
+    private fun validePassword(): Boolean {
         binding.tiPasswordLayout.isErrorEnabled = false
 
         if (binding.tiPassword.text.toString().isEmpty()) {
@@ -136,5 +206,6 @@ class LoginActivite : AppCompatActivity() {
 
         return true
     }
+
 
 }

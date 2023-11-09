@@ -1,23 +1,40 @@
 package tn.esprit.pdm
 
+import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.text.TextUtils
 import android.text.TextWatcher
+import android.util.ArrayMap
+import android.util.Log
 import android.util.Patterns
 import android.view.View
+import android.view.WindowManager
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+import com.google.gson.Gson
+import org.json.JSONObject
 
 import tn.esprit.pdm.databinding.ActivitySignUpBinding
 import tn.esprit.pdm.models.User
 import tn.esprit.pdm.utils.Apiuser
 import retrofit2.Call
 import retrofit2.Response
-import java.nio.charset.Charset
-import javax.security.auth.callback.Callback
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
+import tn.esprit.gamer.utils.MyStatics
 
 class SignUpActivity : AppCompatActivity() {
+
+
+
 
     private lateinit var binding: ActivitySignUpBinding
 
@@ -82,10 +99,15 @@ class SignUpActivity : AppCompatActivity() {
                 return
             }
         })
-            binding.signup.setOnClickListener {
 
+        binding.signup.setOnClickListener {
+            MyStatics.hideKeyboard(this, binding.signup)
+            if (validateFullName() && validateEmail() && validatePassword() && validateConfirmPassword()){
+                startActivity(Intent(this, HomeActivity::class.java))
+            }else{
+                Snackbar.make(contextView, getString(R.string.msg_error_inputs), Snackbar.LENGTH_SHORT).show()
             }
-
+        }
 
         binding.btnTermsAndPolicy.setOnClickListener {
             Snackbar.make(contextView, getString(R.string.msg_coming_soon), Snackbar.LENGTH_SHORT).show()
@@ -193,32 +215,6 @@ class SignUpActivity : AppCompatActivity() {
 
         return true
     }
-    private fun register() {
-        // Valider les champs du formulaire
-        if (validateFullName() && validateEmail() && validatePassword()) {
-            // Créer un objet User avec les données du formulaire
-            val user = User(
-                id = "", // L'ID sera généré côté serveur
-                username = binding.tiFullName.text.toString(),
-                email = binding.tiEmail.text.toString(),
-                password = binding.tiPassword.text.toString(),
-                address = null, // Ou une valeur par défaut
-                birthday = null, // Ou une valeur par défaut
-                firstname = null, // Ou une valeur par défaut
-                lastname = null, // Ou une valeur par défaut
-                image = null, // Ou une valeur par défaut
-                number = null, // Ou une valeur par défaut
-                reason = null, // Ou une valeur par défaut
-                resetCode = null // Ou une valeur par défaut
-            )
-
-            // Créer une instance de l'interface Apiuser
-            // val apiuser = Apiuser.cr
-
-            // Appel à l'API pour l'enregistrement de l'utilisateur
-            //val call = apiuser.registerUser(user)
-
-            // Envoi de la requête de manière asynchrone
+}
 
 
-        }}}

@@ -9,5 +9,10 @@
     <style name="Circular">
         <item name="cornerSize">50%</item>
     </style>
+    <style name="OutlinedBoxBGLB" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/blue</item>
+        <item name="android:textColorHint">@color/blue</item>
+        <item name="hintTextColor">@color/blue</item>
+    </style>
 
 </resources>
