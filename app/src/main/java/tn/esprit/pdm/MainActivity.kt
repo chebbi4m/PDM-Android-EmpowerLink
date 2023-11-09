@@ -2,14 +2,35 @@ package tn.esprit.pdm
 
 
 import android.content.Intent
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import tn.esprit.pdm.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
+    private lateinit var binding: ActivityMainBinding
+    private var keep: Boolean = true
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
-        startActivity(Intent(this, CommunityActivity::class.java))
-        finish()  // Optional: Finish the main activity to prevent going back to it
+        splashScreen.setKeepOnScreenCondition { keep }
+        Handler(Looper.getMainLooper()).postDelayed({
+            keep = false
+        }, 1000)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        //val contextView=binding.contextView
+
+        binding.btnLoginwelcome.setOnClickListener{
+            startActivity(Intent(this, LoginActivite::class.java))
+        }
+        binding.btnCreateAccount.setOnClickListener{
+            startActivity(Intent(this, SignUpActivity::class.java))
+        }
     }
+
+
+
 }
