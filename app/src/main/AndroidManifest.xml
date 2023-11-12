@@ -13,14 +13,51 @@
         android:theme="@style/Theme.Opportunity_pdm"
         tools:targetApi="31">
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.login.ResetPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.login.OtpValidationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.login.ForgetPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.login.SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.login.LoginActivite"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="locked"
+            android:theme="@style/Theme.App.Starting">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".uikotlin.community.CommunityActivity"
+            android:exported="true"/>
+
+        <activity
+            android:name=".uikotlin.experience.CommunityExperiencesActivity"
+            android:exported="true"/>
+
+        <activity
+            android:name=".uikotlin.experience.ExperienceActivity"
+            android:exported="false">
+        </activity>
+
+
+
     </application>
 
 </manifest>

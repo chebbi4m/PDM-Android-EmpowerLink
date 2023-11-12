@@ -1,4 +1,4 @@
-package tn.esprit.pdm
+package tn.esprit.pdm.uikotlin.community
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,8 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONObject
+import tn.esprit.pdm.uikotlin.experience.ExperienceActivity
+import tn.esprit.pdm.R
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection

@@ -1,4 +1,4 @@
-package tn.esprit.pdm
+package tn.esprit.pdm.uikotlin.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,10 +7,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.TextInputEditText
 import tn.esprit.gamer.utils.MyStatics
 import tn.esprit.gamer.utils.OTP_EMAIL
 import tn.esprit.gamer.utils.OTP_MOBILE
+import tn.esprit.pdm.R
 import tn.esprit.pdm.databinding.ActivityOtpValidationBinding
 
 

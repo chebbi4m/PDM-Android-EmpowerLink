@@ -1,4 +1,4 @@
-package tn.esprit.pdm
+package tn.esprit.pdm.uikotlin.community
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import tn.esprit.pdm.R
 import tn.esprit.pdm.models.Community
 
 class CommunityAdapter(

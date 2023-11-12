@@ -1,4 +1,4 @@
-package tn.esprit.pdm
+package tn.esprit.pdm.uikotlin.login
 
 
 import android.content.Intent
@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 
 import tn.esprit.gamer.utils.MyStatics
+import tn.esprit.pdm.R
 import tn.esprit.pdm.databinding.ActivityResetPasswordBinding
 
 class ResetPasswordActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package tn.esprit.pdm
+package tn.esprit.pdm.uikotlin.experience
 
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.launch
+import tn.esprit.pdm.R
 import tn.esprit.pdm.models.Experience
 import tn.esprit.pdm.utils.RetrofitInstance
 

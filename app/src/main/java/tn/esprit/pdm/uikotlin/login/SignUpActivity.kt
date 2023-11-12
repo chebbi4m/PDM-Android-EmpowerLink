@@ -1,41 +1,28 @@
-package tn.esprit.pdm
+package tn.esprit.pdm.uikotlin.login
 
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
-import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.ArrayMap
-import android.util.Log
-import android.util.Patterns
 import android.view.View
-import android.view.WindowManager
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
 
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
-import com.google.gson.Gson
-import org.json.JSONObject
+import com.google.gson.JsonObject
 
 import tn.esprit.pdm.databinding.ActivitySignUpBinding
-import tn.esprit.pdm.models.User
 import tn.esprit.pdm.utils.Apiuser
 import retrofit2.Call
 import retrofit2.Response
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody.Companion.toRequestBody
+import retrofit2.Callback
 import tn.esprit.gamer.utils.MyStatics
+import tn.esprit.pdm.R
+import tn.esprit.pdm.models.request.LoginRequest
 
 class SignUpActivity : AppCompatActivity() {
 
 
-
-
+    val apiuser = Apiuser.create()
     private lateinit var binding: ActivitySignUpBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,15 +89,17 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.signup.setOnClickListener {
             MyStatics.hideKeyboard(this, binding.signup)
-            if (validateFullName() && validateEmail() && validatePassword() && validateConfirmPassword()){
+            registerFunction()
+            /* if (validateFullName() && validateEmail() && validatePassword() && validateConfirmPassword()){
                 startActivity(Intent(this, HomeActivity::class.java))
             }else{
                 Snackbar.make(contextView, getString(R.string.msg_error_inputs), Snackbar.LENGTH_SHORT).show()
-            }
+            }*/
         }
 
         binding.btnTermsAndPolicy.setOnClickListener {
-            Snackbar.make(contextView, getString(R.string.msg_coming_soon), Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(contextView, getString(R.string.msg_coming_soon), Snackbar.LENGTH_SHORT)
+                .show()
         }
 
         binding.btnReturn.setOnClickListener {
@@ -125,7 +114,7 @@ class SignUpActivity : AppCompatActivity() {
             binding.tiFullNameLayout.error = getString(R.string.msg_must_not_be_empty)
             binding.tiFullName.requestFocus()
             return false
-        }else{
+        } else {
             binding.tiFullNameLayout.isErrorEnabled = false
         }
 
@@ -133,7 +122,7 @@ class SignUpActivity : AppCompatActivity() {
             binding.tiFullNameLayout.error = getString(R.string.msg_check_your_characters)
             binding.tiFullName.requestFocus()
             return false
-        }else{
+        } else {
             binding.tiFullNameLayout.isErrorEnabled = false
         }
 
@@ -141,7 +130,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun validateEmail(): Boolean {
-        binding.tiEmailLayout.isErrorEnabled = false
+        /*    binding.tiEmailLayout.isErrorEnabled = false
 
         if (binding.tiEmail.text.toString().isEmpty()) {
             binding.tiEmailLayout.error = getString(R.string.msg_must_not_be_empty)
@@ -159,8 +148,10 @@ class SignUpActivity : AppCompatActivity() {
             binding.tiEmailLayout.isErrorEnabled = false
         }
 
+        */
         return true
     }
+
 
     private fun validatePassword(): Boolean {
         binding.tiPasswordLayout.isErrorEnabled = false
@@ -215,6 +206,39 @@ class SignUpActivity : AppCompatActivity() {
 
         return true
     }
+
+
+
+    private fun registerFunction() {
+        if (validateEmail() && validatePassword()) {
+            // Créer une instance de la classe Signuprequest avec les données de l'utilisateur
+            val signupRequest = LoginRequest(
+                email = binding.tiEmail.text.toString(),
+                password = binding.tiPassword.text.toString(),
+                username = binding.tiFullName.text.toString()
+            )
+
+            // Appeler la méthode d'inscription de l'API
+            apiuser.sInscrire(signupRequest).enqueue(object : Callback<JsonObject> {
+                override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                    if (response.isSuccessful) {
+                        // Traitement réussi, redirigez l'utilisateur vers l'activité d'accueil par exemple
+                        startActivity(Intent(this@SignUpActivity, LoginActivite::class.java))
+                    } else {
+                        // Afficher une erreur en cas de réponse non réussie
+                        Snackbar.make(binding.root, "Error: ${response.code()}", Snackbar.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                    // Gérer les erreurs liées à la connexion, etc.
+                    Snackbar.make(binding.root, "Error: ${t.message}", Snackbar.LENGTH_SHORT).show()
+                }
+            })
+        }
+    }
+
 }
+
 
 
