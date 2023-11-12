@@ -1,26 +1,25 @@
 package tn.esprit.pdm.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 import java.util.Date
 
 data class User(
-    @SerializedName("_id")
-    var id: String,
-    @SerializedName("username") val username: String,
-    @SerializedName("firstname") val firstname: String?,
-    @SerializedName("lastname") val lastname: String?,
-    @SerializedName("email") val email: String,
-    @SerializedName("password") val password: String,
-    @SerializedName("address") val address: String?,
-    @SerializedName("number") val number: Int?,
-    @SerializedName("birthday") val birthday: Date?,
-    @SerializedName("image") val image: String?,
-    @SerializedName("role") val role: String = "user",
-    @SerializedName("banned") val banned: String = "active",
-    @SerializedName("banduration") val banduration: String = "",
-    @SerializedName("reason") val reason: String?,
-    @SerializedName("verified") val verified: Boolean = false,
-    @SerializedName("resetCode") val resetCode: String?
-) {
 
-}
+    var id: String,
+   val username: String,
+val firstname: String?,
+   val lastname: String?,
+val email: String,
+    val password: String,
+   val address: String?,
+  val number: Int?,
+     val birthday: Date?,
+  val image: String?,
+     val role: String = "user",
+     val banned: String = "active",
+    val banduration: String = "",
+    val reason: String?,
+   val verified: Boolean = false,
+ val resetCode: String?
+): Serializable

@@ -20,23 +20,25 @@
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ResetPasswordActivity"
+            android:name=".uikotlin.login.ResetPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".OtpValidationActivity"
+            android:name=".uikotlin.login.OtpValidationActivity"
             android:exported="false" />
         <activity
-            android:name=".ForgetPasswordActivity"
+            android:name=".uikotlin.login.ForgetPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".uikotlin.login.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivite"
+            android:name=".uikotlin.login.LoginActivite"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="locked"
+            android:theme="@style/Theme.App.Starting">
 
 
             <intent-filter>
@@ -46,15 +48,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CommunityActivity"
+            android:name=".uikotlin.community.CommunityActivity"
             android:exported="true"/>
 
         <activity
-            android:name=".CommunityExperiencesActivity"
+            android:name=".uikotlin.experience.CommunityExperiencesActivity"
             android:exported="true"/>
 
         <activity
-            android:name=".ExperienceActivity"
+            android:name=".uikotlin.experience.ExperienceActivity"
             android:exported="false">
         </activity>
 
