@@ -1,4 +1,4 @@
-package tn.esprit.pdm
+package tn.esprit.pdm.uikotlin.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,6 @@ import android.text.Editable
 import android.text.TextWatcher
 
 import android.util.Log
-import android.util.Patterns
 
 import androidx.appcompat.app.AppCompatActivity
 import com.auth0.android.jwt.DecodeException
@@ -21,7 +20,10 @@ import tn.esprit.pdm.databinding.LoginBinding
 
 
 import retrofit2.Call
-import tn.esprit.pdm.models.LoginRequest
+import tn.esprit.pdm.HomeActivity
+import tn.esprit.pdm.ProfileActivity
+import tn.esprit.pdm.R
+import tn.esprit.pdm.models.request.LoginRequest
 import tn.esprit.pdm.uikotlin.SessionManager
 import tn.esprit.pdm.utils.Apiuser
 import java.util.Date
@@ -37,13 +39,6 @@ class LoginActivite : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         verifToken()
-
-
-
-
-
-
-
 
 
 
