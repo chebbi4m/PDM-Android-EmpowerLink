@@ -109,6 +109,7 @@ class LoginActivite : AppCompatActivity() {
                     if (response.isSuccessful) {
                         sessionManager.setLogin(true)
                         sessionManager.setUserId(response.body()?.get("token").toString())
+                        sessionManager.setUserEmail(response.body()?.get("token").toString())
                         val intent = Intent(this@LoginActivite, ProfileActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         startActivity(intent)

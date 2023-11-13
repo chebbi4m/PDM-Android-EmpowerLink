@@ -1,6 +1,7 @@
 package tn.esprit.pdm.uikotlin.login
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -19,17 +20,21 @@ import tn.esprit.pdm.models.request.LoginRequest
 
 import tn.esprit.pdm.utils.Apiuser
 
-
+const val PREF_FILE = "USER_PREF"
+const val EMAIL = "EMAIL"
 class ForgetPasswordActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityForgetPasswordBinding
     val apiuser = Apiuser.create()
+    private val PREF_FILE = "USER_PREF"
+    private lateinit var mSharedPreferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityForgetPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val contextView = findViewById<View>(R.id.context_view)
-
+         mSharedPreferences = getSharedPreferences(PREF_FILE, MODE_PRIVATE)
         binding.tiEmail.addTextChangedListener(object : TextWatcher {
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -87,7 +92,9 @@ class ForgetPasswordActivity : AppCompatActivity() {
         val signupRequest = LoginRequest(
             email = binding.tiEmail.text.toString()
         )
-
+        val editor = mSharedPreferences.edit()
+        editor.putString(EMAIL , binding.tiEmail.text.toString())
+        editor.apply()
         apiuser.sendPasswordResetCode(signupRequest)
             .enqueue(object : retrofit2.Callback<JsonElement> {
                 override fun onResponse(call: Call<JsonElement>, response: Response<JsonElement>) {

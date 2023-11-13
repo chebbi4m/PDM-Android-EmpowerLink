@@ -10,6 +10,8 @@ import retrofit2.Retrofit
 import tn.esprit.pdm.models.request.LoginRequest
 
 interface Apiuser {
+    @POST("user/resetcode")
+    fun resetCode(@Body resetcodeRequest: LoginRequest): Call<JsonElement>
 
     @POST("user/login")
     fun seConnecter(@Body loginRequest: LoginRequest): Call<JsonObject>
@@ -17,6 +19,8 @@ interface Apiuser {
     fun sInscrire(@Body signupRequest: LoginRequest): Call<JsonObject>
     @POST("user/ForgetPassword")
     fun sendPasswordResetCode(@Body resetPasswordRequest: LoginRequest): Call<JsonElement>
+    @POST("user/changerpassword")
+    fun changerPassword(@Body changerPasswordRequest: LoginRequest): Call<JsonElement>
     companion object {
 
         var BASE_URL = "http://192.168.139.1:9090/"

@@ -12,8 +12,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import tn.esprit.pdm.uikotlin.SessionManager
 
-class HomeActivity :AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-private lateinit var sessionManager: SessionManager
+class HomeActivity :AppCompatActivity() {
+/*private lateinit var sessionManager: SessionManager
     private lateinit var drawerLayout: DrawerLayout
 
 
@@ -57,5 +57,5 @@ private lateinit var sessionManager: SessionManager
         } else {
             onBackPressedDispatcher.onBackPressed()
         }
-    }
+    }*/
 }
