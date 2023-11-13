@@ -81,6 +81,7 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:id="@+id/tiedit"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:src="@drawable/ic_edit_profile" />
