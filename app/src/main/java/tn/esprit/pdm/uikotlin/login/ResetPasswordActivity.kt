@@ -102,7 +102,7 @@ class ResetPasswordActivity : AppCompatActivity() {
             // Further processing if needed
 
             // Redirect the user to the OTP validation activity
-            startActivity(Intent(this@ResetPasswordActivity, LoginActivite::class.java))
+            startActivity(Intent(this@ResetPasswordActivity, LoginActivity::class.java))
         } else {
             // Handle null response body
             handleFailure("Null response body")

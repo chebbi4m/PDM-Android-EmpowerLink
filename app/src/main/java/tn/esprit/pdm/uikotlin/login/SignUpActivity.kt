@@ -22,7 +22,7 @@ import tn.esprit.pdm.models.request.LoginRequest
 class SignUpActivity : AppCompatActivity() {
 
 
-    val apiuser = Apiuser.create()
+   private  val apiuser = Apiuser.create()
     private lateinit var binding: ActivitySignUpBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -194,7 +194,7 @@ class SignUpActivity : AppCompatActivity() {
             binding.tiConfirmPasswordLayout.isErrorEnabled = false
         }
 
-        if (!binding.tiConfirmPassword.text.toString().equals(binding.tiPassword.text.toString())) {
+        if (binding.tiConfirmPassword.text.toString() != binding.tiPassword.text.toString()) {
             binding.tiConfirmPasswordLayout.error = getString(R.string.msg_check_your_confirm_Password)
             binding.tiPasswordLayout.error = getString(R.string.msg_check_your_confirm_Password)
             binding.tiConfirmPassword.requestFocus()
@@ -223,7 +223,7 @@ class SignUpActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                     if (response.isSuccessful) {
                         // Traitement réussi, redirigez l'utilisateur vers l'activité d'accueil par exemple
-                        startActivity(Intent(this@SignUpActivity, LoginActivite::class.java))
+                        startActivity(Intent(this@SignUpActivity, LoginActivity::class.java))
                     } else {
                         // Afficher une erreur en cas de réponse non réussie
                         Snackbar.make(binding.root, "Error: ${response.code()}", Snackbar.LENGTH_SHORT).show()

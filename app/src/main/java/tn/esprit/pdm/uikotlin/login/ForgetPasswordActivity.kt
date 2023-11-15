@@ -8,13 +8,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.util.Patterns
-import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.JsonElement
 
 import retrofit2.Call
 import retrofit2.Response
-import tn.esprit.pdm.R
 import tn.esprit.pdm.databinding.ActivityForgetPasswordBinding
 import tn.esprit.pdm.models.request.LoginRequest
 
@@ -25,7 +23,7 @@ const val EMAIL = "EMAIL"
 class ForgetPasswordActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityForgetPasswordBinding
-    val apiuser = Apiuser.create()
+    private val apiuser = Apiuser.create()
     private val PREF_FILE = "USER_PREF"
     private lateinit var mSharedPreferences: SharedPreferences
 
@@ -33,7 +31,7 @@ class ForgetPasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityForgetPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val contextView = findViewById<View>(R.id.context_view)
+
          mSharedPreferences = getSharedPreferences(PREF_FILE, MODE_PRIVATE)
         binding.tiEmail.addTextChangedListener(object : TextWatcher {
 

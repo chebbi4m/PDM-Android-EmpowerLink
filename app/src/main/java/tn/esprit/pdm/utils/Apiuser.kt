@@ -7,6 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.Retrofit
+import retrofit2.http.PUT
 import tn.esprit.pdm.models.request.LoginRequest
 
 interface Apiuser {
@@ -21,6 +22,9 @@ interface Apiuser {
     fun sendPasswordResetCode(@Body resetPasswordRequest: LoginRequest): Call<JsonElement>
     @POST("user/changerpassword")
     fun changerPassword(@Body changerPasswordRequest: LoginRequest): Call<JsonElement>
+    @PUT("user/editprofile")
+    fun editprofile(@Body editProfileRequest: LoginRequest): Call<JsonObject>
+
     companion object {
 
         var BASE_URL = "http://192.168.139.1:9090/"

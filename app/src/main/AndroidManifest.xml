@@ -38,7 +38,7 @@
             android:name=".uikotlin.login.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".uikotlin.login.LoginActivite"
+            android:name=".uikotlin.login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

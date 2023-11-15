@@ -8,7 +8,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import tn.esprit.pdm.databinding.ActivityMainBinding
-import tn.esprit.pdm.uikotlin.login.LoginActivite
+import tn.esprit.pdm.uikotlin.login.LoginActivity
 import tn.esprit.pdm.uikotlin.login.SignUpActivity
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         //val contextView=binding.contextView
 
         binding.btnLoginwelcome.setOnClickListener{
-            startActivity(Intent(this, LoginActivite::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
         }
         binding.btnCreateAccount.setOnClickListener{
             startActivity(Intent(this, SignUpActivity::class.java))

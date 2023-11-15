@@ -12,17 +12,26 @@
 
 >
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/nac_header"
+        android:layout_width="410dp"
+        android:layout_height="65dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-
+        android:layout_marginTop="50dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,8 +54,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="20dp"
                 android:background="@drawable/textbg"
-                android:text="wassim nsiri"
                 android:gravity="center"
+                android:text="wassim nsiri"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -55,8 +64,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="80dp"
                 android:gravity="center"
-                android:weightSum="4"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="4">
 
                 <ImageView
                     android:layout_width="50dp"
@@ -76,12 +85,12 @@
                     android:layout_height="50dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_email" />
+                    android:src="@drawable/facebook_icon" />
 
                 <ImageView
+                    android:id="@+id/tiedit"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:id="@+id/tiedit"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:src="@drawable/ic_edit_profile" />
