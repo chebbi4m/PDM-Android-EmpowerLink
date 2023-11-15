@@ -60,6 +60,11 @@ private lateinit var binding:ActivityHomePageBinding
         // Utilisez les informations du token
         binding.textView6.text = decodedToken.username
 
+        val usernameTextView: TextView = navigationView.getHeaderView(0).findViewById(R.id.username) as TextView
+
+// Set the retrieved username to the TextView in the navigation drawer
+        usernameTextView.text = decodedToken.email
+
         // Set up ActionBarDrawerToggle
         toggle = ActionBarDrawerToggle(
             this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close
