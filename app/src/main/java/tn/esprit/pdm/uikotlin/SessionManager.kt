@@ -12,6 +12,7 @@ class SessionManager (context: Context) {
     private val IS_LOGGED_IN = "isLoggedIn"
     private val USER_ID = "userId"
     private val USER_EMAIL ="useremail"
+    private val USER_NAME = "username"
 
     fun setLogin(isLoggedIn: Boolean) {
         editor.putBoolean(IS_LOGGED_IN, isLoggedIn)
@@ -38,9 +39,21 @@ class SessionManager (context: Context) {
         return sharedPreferences.getString(USER_EMAIL, "")
     }
 
+    fun setUserName(username: String) {
+        editor.putString(USER_NAME, username)
+        editor.apply()
+    }
+
+    fun getUserName(): String {
+        return sharedPreferences.getString(USER_NAME, "").toString()
+    }
+
      fun logout() {
         editor.clear()
         editor.apply()}
+
+
+
     fun decodeToken(token: String): DecodedToken {
         try {
             val jwt = JWT(token)
@@ -51,17 +64,16 @@ class SessionManager (context: Context) {
             val email = jwt.getClaim("email").asString()
             val role = jwt.getClaim("role").asString()
 
-            return DecodedToken(userId, username, email, role)
+            return DecodedToken(userId, username.toString(), email, role)
         } catch (e: Exception) {
             Log.e("TokenDecoder", "Erreur lors du décodage du token : ${e.message}")
             // Gérer l'erreur de décodage, renvoyer un objet vide ou null selon vos besoins
             return DecodedToken("", "", "", "")
         }
     }
-
     data class DecodedToken(
         val userId: String?,
-        val username: String?,
+        val username: String,
         val email: String?,
         val role: String?
     )

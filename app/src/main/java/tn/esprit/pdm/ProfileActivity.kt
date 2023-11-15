@@ -50,7 +50,7 @@ class ProfileActivity: AppCompatActivity() {
 
         when(item.itemId){
 
-            R.id.logoutMenu ->{
+            R.id.nav_item2 ->{
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Logout")
                 builder.setMessage("Are you sure you want to logout ?")
@@ -69,7 +69,7 @@ class ProfileActivity: AppCompatActivity() {
     private fun logout() {
         sessionManager = SessionManager(this)
         sessionManager.logout()
-        val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
         finish()

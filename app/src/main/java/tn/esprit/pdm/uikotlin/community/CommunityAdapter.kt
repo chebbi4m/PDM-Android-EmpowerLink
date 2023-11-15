@@ -27,9 +27,9 @@ class CommunityAdapter(
 
         // Set data to views
         community?.let {
-            communityImage.setImageResource(it.communityImage)
-            communityName.text = it.communityTitle
-            communityCategory.text = it.communityCategory
+            communityImage.setImageResource(it.image)
+            communityName.text = it.title
+            communityCategory.text = it.category
         }
 
         // Set click listener for the item
@@ -42,5 +42,3 @@ class CommunityAdapter(
         return view
     }
 }
-
-

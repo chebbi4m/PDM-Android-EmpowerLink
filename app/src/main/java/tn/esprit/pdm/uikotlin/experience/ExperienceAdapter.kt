@@ -1,5 +1,7 @@
+// ExperienceAdapter.kt
 package tn.esprit.pdm.uikotlin.experience
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -10,33 +12,36 @@ import android.widget.TextView
 import tn.esprit.pdm.R
 import tn.esprit.pdm.models.Experience
 
-// ExperienceAdapter.kt
 class ExperienceAdapter(
     context: Context,
-    private val experiences: List<Experience>
+    private val experiences: List<Experience>,
+    private val onItemClick: (Experience) -> Unit
 ) : ArrayAdapter<Experience>(context, R.layout.experience__item, experiences) {
 
+    @SuppressLint("ResourceType")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.experience__item, parent, false)
 
-        // Set data to views
-        val creatorImage: ImageView = view.findViewById(R.id.creatorImage)
-        val creatorName: TextView = view.findViewById(R.id.creatorName)
-        val experienceDate: TextView = view.findViewById(R.id.experienceDate)
+        val experienceImage: ImageView = view.findViewById(R.drawable.profile) // Assuming this is the correct ID
         val experienceTitle: TextView = view.findViewById(R.id.experienceTitle)
-        val experienceText: TextView = view.findViewById(R.id.experienceText)
+        val experienceDate: TextView = view.findViewById(R.id.experienceDate)
 
         val experience = getItem(position)
 
         experience?.let {
-            creatorImage.setImageResource(R.drawable.profile)
-            creatorName.text = it.creatorName
-            experienceDate.text = it.experienceDate
+            // Assuming creatorImage is an Int representing a drawable resource
+            experienceImage.setImageResource(R.drawable.profile)
             experienceTitle.text = it.experienceTitle
-            experienceText.text = it.experienceText
+            experienceDate.text = it.experienceDate
+        }
+
+        // Set click listener for the item
+        view.setOnClickListener {
+            experience?.let {
+                onItemClick(it)
+            }
         }
 
         return view
     }
 }
-

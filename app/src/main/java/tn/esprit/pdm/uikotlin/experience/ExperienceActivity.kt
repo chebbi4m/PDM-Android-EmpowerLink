@@ -42,7 +42,16 @@ class ExperienceActivity : AppCompatActivity() {
 
     private fun updateUI(communityExperiences: List<Experience>) {
         val experienceListView: ListView = findViewById(R.id.experienceListView)
-        val experienceAdapter = ExperienceAdapter(this@ExperienceActivity, communityExperiences)
+
+        // Define the item click callback
+        val onItemClick: (Experience) -> Unit = { clickedExperience ->
+            // Handle item click as needed
+            // For example, you can navigate to a detailed view
+            Log.d("ExperienceClicked", "Clicked on experience: ${clickedExperience.experienceTitle}")
+        }
+
+        val experienceAdapter = ExperienceAdapter(this@ExperienceActivity, communityExperiences, onItemClick)
         experienceListView.adapter = experienceAdapter
     }
+
 }

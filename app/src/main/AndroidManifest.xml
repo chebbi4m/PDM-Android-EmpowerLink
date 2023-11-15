@@ -23,6 +23,9 @@
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
+            android:name=".uikotlin.home.HomePageActivity"
+            android:exported="true"/>
+        <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity

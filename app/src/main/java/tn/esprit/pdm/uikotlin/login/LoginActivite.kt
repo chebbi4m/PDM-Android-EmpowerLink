@@ -20,6 +20,7 @@ import tn.esprit.pdm.R
 import tn.esprit.pdm.databinding.LoginBinding
 import tn.esprit.pdm.models.request.LoginRequest
 import tn.esprit.pdm.uikotlin.SessionManager
+import tn.esprit.pdm.uikotlin.home.HomePageActivity
 import tn.esprit.pdm.utils.Apiuser
 import java.util.Date
 
@@ -83,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
                         sessionManager.setUserId(response.body()?.get("token").toString())
                         sessionManager.setUserEmail(response.body()?.get("token").toString())
 
-                        val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
+                        val intent = Intent(this@LoginActivity, HomePageActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         startActivity(intent)
                         finish()
