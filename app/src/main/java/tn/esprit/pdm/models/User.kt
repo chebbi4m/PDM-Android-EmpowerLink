@@ -7,7 +7,7 @@ import java.util.Date
 data class User(
 
     var id: String,
-   val username: String,
+   val username: String?,
 val firstname: String?,
    val lastname: String?,
 val email: String,

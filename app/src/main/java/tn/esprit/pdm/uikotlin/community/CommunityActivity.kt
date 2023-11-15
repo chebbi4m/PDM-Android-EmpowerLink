@@ -19,7 +19,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 import kotlin.concurrent.thread
 
-class CommunityActivity : AppCompatActivity(), CreateCommunityFragment.OnCommunityCreatedListener {
+class CommunityActivity : AppCompatActivity(), CreateCommunityFragment.OnCommunityCreatedListener{
 
     private lateinit var communityListView: ListView
 

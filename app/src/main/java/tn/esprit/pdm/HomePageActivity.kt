@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.MenuItem
 import android.widget.ListView
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +17,10 @@ import com.google.android.material.navigation.NavigationView
 import org.json.JSONObject
 import tn.esprit.pdm.ProfileActivity
 import tn.esprit.pdm.R
+import tn.esprit.pdm.databinding.ActivityHomePageBinding
+import tn.esprit.pdm.databinding.ActivityProfilBinding
 import tn.esprit.pdm.models.Experience
+import tn.esprit.pdm.models.username
 import tn.esprit.pdm.uikotlin.SessionManager
 import tn.esprit.pdm.uikotlin.community.CommunityActivity
 import tn.esprit.pdm.uikotlin.experience.ExperienceActivity
@@ -35,16 +39,26 @@ class HomePageActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
     private lateinit var toggle: ActionBarDrawerToggle
-
+private lateinit var binding:ActivityHomePageBinding
     // Inside your HomePageActivity class
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page)
-
+        binding = ActivityHomePageBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         // Set up the drawer
         drawerLayout = findViewById(R.id.drawerLayout)
         navigationView = findViewById(R.id.navigationView)
+
+        sessionManager = SessionManager(this)
+        val token = sessionManager.getUserName().toString()
+
+        // Décodez le token
+        val decodedToken = sessionManager.decodeToken(token)
+
+        // Utilisez les informations du token
+        binding.textView6.text = decodedToken.username
 
         // Set up ActionBarDrawerToggle
         toggle = ActionBarDrawerToggle(
@@ -61,12 +75,17 @@ class HomePageActivity : AppCompatActivity() {
             drawerLayout.openDrawer(GravityCompat.START)
         }
 
+
+
+
+
         // Set up ListView
         communityListView = findViewById(R.id.homePageListView)
         refreshListView()
 
         // Set up item click listener for the navigation view
         navigationView.setNavigationItemSelectedListener { menuItem: MenuItem ->
+
             when (menuItem.itemId) {
                 R.id.nav_item3 ->{
                     startActivity(Intent(this, ProfileActivity::class.java))

@@ -33,14 +33,14 @@ class ProfileActivity: AppCompatActivity() {
 
 
         sessionManager = SessionManager(this)
-        val token = sessionManager.getUserEmail().toString()
+        val token = sessionManager.getUserName().toString()
 
         // Décodez le token
         val decodedToken = sessionManager.decodeToken(token)
 
         // Utilisez les informations du token
-        binding.tiusername.text = decodedToken.email
-        binding
+        binding.tiusername.text = decodedToken.username
+       // binding
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.nav_menu, menu)

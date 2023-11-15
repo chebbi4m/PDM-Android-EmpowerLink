@@ -44,7 +44,7 @@ class SessionManager (context: Context) {
         editor.apply()
     }
 
-    fun getUserName(): String {
+    fun getUserName(): String? {
         return sharedPreferences.getString(USER_NAME, "").toString()
     }
 
@@ -64,7 +64,7 @@ class SessionManager (context: Context) {
             val email = jwt.getClaim("email").asString()
             val role = jwt.getClaim("role").asString()
 
-            return DecodedToken(userId, username.toString(), email, role)
+            return DecodedToken(userId, username, email, role)
         } catch (e: Exception) {
             Log.e("TokenDecoder", "Erreur lors du décodage du token : ${e.message}")
             // Gérer l'erreur de décodage, renvoyer un objet vide ou null selon vos besoins
@@ -73,7 +73,7 @@ class SessionManager (context: Context) {
     }
     data class DecodedToken(
         val userId: String?,
-        val username: String,
+        val username: String?,
         val email: String?,
         val role: String?
     )

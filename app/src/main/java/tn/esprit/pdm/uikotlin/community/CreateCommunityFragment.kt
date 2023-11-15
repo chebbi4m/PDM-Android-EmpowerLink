@@ -15,13 +15,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 import tn.esprit.pdm.R
 import tn.esprit.pdm.models.Community
 import tn.esprit.pdm.models.CommunityDTO
+import tn.esprit.pdm.uikotlin.SessionManager
 import tn.esprit.pdm.utils.CommunityServices
 
 class CreateCommunityFragment : DialogFragment() {
 
     // Retrofit instance for making API requests
     private val retrofit = Retrofit.Builder()
-        .baseUrl("http://10.0.2.2:9090/") // Replace with your actual base URL
+        .baseUrl("http://192.168.139.1:9090/") // Replace with your actual base URL
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
@@ -34,6 +35,7 @@ class CreateCommunityFragment : DialogFragment() {
 
     private var communityCreatedListener: OnCommunityCreatedListener? = null
     private var communityActivity: CommunityActivity? = null
+    private lateinit var sessionManager: SessionManager
 
     fun setOnCommunityCreatedListener(listener: OnCommunityCreatedListener, activity: CommunityActivity) {
         communityCreatedListener = listener
@@ -45,7 +47,7 @@ class CreateCommunityFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_create_community, container, false)
-
+        sessionManager = SessionManager(requireContext())
         // Find views in the fragment layout
         val communityNameEditText: EditText = view.findViewById(R.id.communityNameEditText)
         val communityCategoryEditText: EditText = view.findViewById(R.id.communityCategoryEditText)
@@ -58,9 +60,11 @@ class CreateCommunityFragment : DialogFragment() {
             val communityName = communityNameEditText.text.toString()
             val communityCategory = communityCategoryEditText.text.toString()
             val communityObjective = communityObjectiveEditText.text.toString()
-
+            val token = sessionManager.getUserName().toString()
+            val decodedToken = sessionManager.decodeToken(token)
+            val username = decodedToken.username
             // Call the function to create a new community in the database
-            createCommunityInDatabase(communityName, "username_placeholder", communityCategory, communityObjective)
+            createCommunityInDatabase(communityName, username.toString(), communityCategory, communityObjective)
 
             // Notify the listener that a community has been created
             communityCreatedListener?.onCommunityCreated()

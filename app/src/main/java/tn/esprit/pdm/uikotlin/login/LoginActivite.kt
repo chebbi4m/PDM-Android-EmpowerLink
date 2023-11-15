@@ -81,8 +81,10 @@ class LoginActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                     if (response.isSuccessful) {
                         sessionManager.setLogin(true)
+
                         sessionManager.setUserId(response.body()?.get("token").toString())
                         sessionManager.setUserEmail(response.body()?.get("token").toString())
+                        sessionManager.setUserName(response.body()?.get("token").toString())
 
                         val intent = Intent(this@LoginActivity, HomePageActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
