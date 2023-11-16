@@ -11,6 +11,14 @@
         android:icon="@drawable/iv_account"
         android:title="Item 2" />
     <item
+        android:id="@+id/education"
+        android:icon="@drawable/iv_account"
+        android:title="education" />
+    <item
+        android:id="@+id/formation"
+        android:icon="@drawable/ic_account"
+        android:title="formation " />
+    <item
         android:id="@+id/nav_item2"
         android:icon="@drawable/logout_ic"
         android:title="logout" />

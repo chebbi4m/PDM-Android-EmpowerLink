@@ -23,8 +23,10 @@ import tn.esprit.pdm.models.Experience
 import tn.esprit.pdm.models.username
 import tn.esprit.pdm.uikotlin.SessionManager
 import tn.esprit.pdm.uikotlin.community.CommunityActivity
+import tn.esprit.pdm.uikotlin.educations.EducationAdapter
 import tn.esprit.pdm.uikotlin.experience.ExperienceActivity
 import tn.esprit.pdm.uikotlin.experience.ExperienceAdapter
+import tn.esprit.pdm.uikotlin.formation.FormationMain
 import tn.esprit.pdm.uikotlin.login.ForgetPasswordActivity
 import tn.esprit.pdm.uikotlin.login.LoginActivity
 import java.io.BufferedReader
@@ -92,6 +94,12 @@ private lateinit var binding:ActivityHomePageBinding
         navigationView.setNavigationItemSelectedListener { menuItem: MenuItem ->
 
             when (menuItem.itemId) {
+                R.id.formation ->{
+                    startActivity(Intent(this, FormationMain::class.java))
+                }
+                R.id.education ->{
+                    startActivity(Intent(this, EducationAdapter::class.java))
+                }
                 R.id.nav_item3 ->{
                     startActivity(Intent(this, ProfileActivity::class.java))
                 }

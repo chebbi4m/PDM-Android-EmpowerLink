@@ -3,6 +3,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt")
+    id("kotlin-kapt")
 
 }
 
@@ -59,4 +60,8 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
     implementation("androidx.core:core-splashscreen:1.0.1")
     implementation("com.hbb20:ccp:2.5.1")
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.1")
+
 }
