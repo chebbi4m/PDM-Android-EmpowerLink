@@ -2,11 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/textbg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".uikotlin.login.EditProfileActivity"
-    >
+    android:background="@drawable/textbg"
+    tools:context=".uikotlin.login.EditProfileActivity">
 
     <ImageView
         android:id="@+id/backButton"
@@ -69,6 +68,7 @@
             android:textColor="#74D386"
             android:textColorHint="#74D386" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/lastNameField"
         android:layout_width="365dp"
@@ -92,6 +92,7 @@
             android:textColor="#74D386"
             android:textColorHint="#74D386" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout2"
         android:layout_width="365dp"
@@ -115,6 +116,7 @@
             android:textColor="#74D386"
             android:textColorHint="#74D386" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordField"
         android:layout_width="365dp"
@@ -139,6 +141,7 @@
             android:textColor="#74D386"
             android:textColorHint="#74D386" />
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/phoneNumberField"
@@ -184,20 +187,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordField" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/descriptionField"
+        android:layout_width="365dp"
+        android:layout_height="62dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:hint="description"
+
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countryCodePicker">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="#74D386"
+
+            android:textColor="#74D386"
+            android:textColorHint="#74D386" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <android.widget.Button
         android:id="@+id/register_button"
         android:layout_width="182dp"
         android:layout_height="64dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="132dp"
         android:background="@drawable/btn_bg"
         android:clickable="true"
         android:elevation="1dp"
         android:text="Register"
         android:textColor="@color/white"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/countryCodePicker" />
+        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

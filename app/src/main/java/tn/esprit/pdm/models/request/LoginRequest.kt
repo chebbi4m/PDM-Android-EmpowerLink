@@ -15,5 +15,6 @@ data class LoginRequest(
     var adress: String? = null,
     var number: String? = null,
     var userId:String? = null,
+    var description:String?=null,
 
 ) : Serializable

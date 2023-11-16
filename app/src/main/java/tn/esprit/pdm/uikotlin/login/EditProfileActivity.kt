@@ -54,7 +54,8 @@ class EditProfileActivity:AppCompatActivity() {
             lastname = binding.lastName.text.toString(),
             email = binding.email.text.toString(),
             adress = binding.adress.text.toString(),
-            number = binding.phonenumber.text.toString()
+            number = binding.phonenumber.text.toString(),
+            description = binding.description.text.toString()
         )
 
         // Appeler la méthode d'inscription de l'API

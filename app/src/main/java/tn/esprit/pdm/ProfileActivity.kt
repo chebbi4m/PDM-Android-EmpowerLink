@@ -40,6 +40,8 @@ class ProfileActivity: AppCompatActivity() {
 
         // Utilisez les informations du token
         binding.tiusername.text = decodedToken.username
+
+        binding.textView8.text=decodedToken.description
        // binding
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
