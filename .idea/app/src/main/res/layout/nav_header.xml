@@ -1,0 +1,9 @@
+<!-- nav_header.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:background="@color/colorPrimary">
+
+    <!-- Customize the header layout as needed -->
+
+</RelativeLayout>
