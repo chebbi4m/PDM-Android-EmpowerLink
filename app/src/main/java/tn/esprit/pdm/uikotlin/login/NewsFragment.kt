@@ -1,36 +1,37 @@
-package tn.esprit.nascar.fragment
+package tn.esprit.pdm.uikotlin.login
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import tn.esprit.nascar.R
-import tn.esprit.nascar.adapters.NewsAdapter
-import tn.esprit.nascar.databinding.FragmentNewsBinding
-import tn.esprit.nascar.models.News
+import tn.esprit.pdm.R
+import tn.esprit.pdm.databinding.FragmentNewsBinding
+import tn.esprit.pdm.uikotlin.SessionManager
 
 class NewsFragment : Fragment() {
-
+    private lateinit var sessionManager: SessionManager
     private lateinit var binding: FragmentNewsBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = FragmentNewsBinding.inflate(layoutInflater)
-
-        binding.rvNews.adapter = NewsAdapter(getListNews(requireContext()))
-        binding.rvNews.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentNewsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    private fun getListNews(context: Context) : MutableList<News> {
-        return mutableListOf(
-            News(1, R.drawable.ic_news1, context.getString(R.string.news1) , context.getString(R.string.newsDesc1)),
-            News(2, R.drawable.ic_news2, context.getString(R.string.news2) , context.getString(R.string.newsDesc2)),
-            News(3, R.drawable.ic_news3, context.getString(R.string.news3) , context.getString(R.string.newsDesc3))
-        )
-    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        sessionManager = SessionManager(requireContext())
+
+        val token = sessionManager.getUserDescription().toString()
+
+        // Décodez le token
+        val decodedToken = sessionManager.decodeToken(token)
+
+        // Utilisez les informations du token
+        binding.txtAbout.text = decodedToken.description
+    }
 }

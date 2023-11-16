@@ -8,12 +8,15 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import tn.esprit.pdm.databinding.ActivityForgetPasswordBinding
 import tn.esprit.pdm.databinding.ActivityProfilBinding
 import tn.esprit.pdm.uikotlin.SessionManager
+import tn.esprit.pdm.uikotlin.login.EditFragment
 import tn.esprit.pdm.uikotlin.login.EditProfileActivity
 import tn.esprit.pdm.uikotlin.login.ForgetPasswordActivity
 import tn.esprit.pdm.uikotlin.login.LoginActivity
+import tn.esprit.pdm.uikotlin.login.NewsFragment
 
 class ProfileActivity: AppCompatActivity() {
     private lateinit var sessionManager: SessionManager
@@ -24,6 +27,7 @@ class ProfileActivity: AppCompatActivity() {
         binding = ActivityProfilBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val contextView = findViewById<View>(R.id.context_view)
+
         binding.tiedit.setOnClickListener(){
             startActivity(Intent(this, EditProfileActivity::class.java))
         }
@@ -41,8 +45,25 @@ class ProfileActivity: AppCompatActivity() {
         // Utilisez les informations du token
         binding.tiusername.text = decodedToken.username
 
-        binding.textView8.text=decodedToken.description
+        //binding.textView8.text=decodedToken.description
        // binding
+        binding.linkedin.setOnClickListener {
+            changeFragment(NewsFragment(), "")
+        }
+        binding.github.setOnClickListener {
+            changeFragment(EditFragment(), "")
+        }
+
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, NewsFragment()).commit()
+
+    }
+    private fun changeFragment(fragment: Fragment, name: String) {
+
+        if (name.isEmpty())
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+        else
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack("").commit()
+
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.nav_menu, menu)
