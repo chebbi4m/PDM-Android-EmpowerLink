@@ -27,7 +27,7 @@ interface Apiuser {
 
     companion object {
 
-        var BASE_URL = "http://192.168.139.1:9090/"
+        var BASE_URL = "http://172.29.208.1:9090/"
 
         fun create() : Apiuser {
             val retrofit = Retrofit.Builder()
