@@ -22,7 +22,8 @@ class ExperienceAdapter(
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.experience__item, parent, false)
 
-        val experienceImage: ImageView = view.findViewById(R.drawable.profile) // Assuming this is the correct ID
+      //val experienceImage: ImageView = view.findViewById(R.drawable.profile) // Assuming this is the correct ID
+
         val experienceTitle: TextView = view.findViewById(R.id.experienceTitle)
         val experienceDate: TextView = view.findViewById(R.id.experienceDate)
 
@@ -30,7 +31,7 @@ class ExperienceAdapter(
 
         experience?.let {
             // Assuming creatorImage is an Int representing a drawable resource
-            experienceImage.setImageResource(R.drawable.profile)
+          //  experienceImage.setImageResource(R.drawable.profile)
             experienceTitle.text = it.experienceTitle
             experienceDate.text = it.experienceDate
         }

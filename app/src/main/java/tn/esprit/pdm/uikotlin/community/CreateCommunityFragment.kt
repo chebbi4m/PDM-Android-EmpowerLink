@@ -62,9 +62,9 @@ class CreateCommunityFragment : DialogFragment() {
             val communityObjective = communityObjectiveEditText.text.toString()
             val token = sessionManager.getUserName().toString()
             val decodedToken = sessionManager.decodeToken(token)
-            val username = decodedToken.username
+            val username = decodedToken.username.toString()
             // Call the function to create a new community in the database
-            createCommunityInDatabase(communityName, username.toString(), communityCategory, communityObjective)
+            createCommunityInDatabase(communityName, username, communityCategory, communityObjective)
 
             // Notify the listener that a community has been created
             communityCreatedListener?.onCommunityCreated()
@@ -80,6 +80,8 @@ class CreateCommunityFragment : DialogFragment() {
         // Use Kotlin coroutines to perform the network operation on a background thread
         GlobalScope.launch(Dispatchers.IO) {
             try {
+                val token = sessionManager.getUserName().toString()
+                val decodedToken = sessionManager.decodeToken(token)
                 // Create a CommunityDTO object with the provided data
                 val communityDTO = CommunityDTO(
                     communityId = 0,  // Replace with the actual ID
@@ -87,7 +89,7 @@ class CreateCommunityFragment : DialogFragment() {
                     name = name,
                     category = category,
                     objectif = objectif,
-                    username = username
+                    username = decodedToken.username.toString()
                 )
 
                 // Make a network request to create the community

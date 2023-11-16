@@ -51,6 +51,7 @@
                 android:divider="@android:color/darker_gray"
                 android:dividerHeight="1dp"
                 android:padding="16dp"
+
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

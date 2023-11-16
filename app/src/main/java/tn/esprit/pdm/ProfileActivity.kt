@@ -76,4 +76,6 @@ class ProfileActivity: AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+
 }

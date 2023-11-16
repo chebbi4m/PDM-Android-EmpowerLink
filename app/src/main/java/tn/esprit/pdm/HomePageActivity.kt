@@ -181,12 +181,11 @@ private lateinit var binding:ActivityHomePageBinding
                 val communityId = experienceJson.getString("communityId")
                 val image = R.drawable.profile // Replace with actual image data
                 val title = experienceJson.getString("title")
-                val category = experienceJson.getString("category")
                 val username = "username_placeholder"
                 val experienceDate = experienceJson.optString("createdAt", null)
                 val experienceText = experienceJson.optString("text", null)
 
-                experiences.add(Experience(username, title, id, communityId, image, experienceDate, experienceText ))
+                experiences.add(Experience(username, title, id, communityId, image, experienceDate, experienceText))
             }
 
 
