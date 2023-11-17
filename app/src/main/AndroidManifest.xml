@@ -51,6 +51,22 @@
             android:name=".uikotlin.login.LoginActivity"
             android:exported="false" />
         <activity
+            android:name=".uikotlin.opportunity.DescriptionData"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.opportunity.OppoptunityActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.hospital.DetailsHospital"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.hospital.HospitalListView"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.serviceSocial.SocialServiceActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="locked"
