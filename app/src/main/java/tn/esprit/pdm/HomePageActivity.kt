@@ -29,6 +29,7 @@ import tn.esprit.pdm.uikotlin.experience.ExperienceAdapter
 import tn.esprit.pdm.uikotlin.formation.FormationMain
 import tn.esprit.pdm.uikotlin.login.ForgetPasswordActivity
 import tn.esprit.pdm.uikotlin.login.LoginActivity
+import tn.esprit.pdm.uikotlin.opportunity.OppoptunityActivity
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -98,7 +99,7 @@ private lateinit var binding:ActivityHomePageBinding
                     startActivity(Intent(this, FormationMain::class.java))
                 }
                 R.id.education ->{
-                    startActivity(Intent(this, EducationAdapter::class.java))
+                    startActivity(Intent(this, OppoptunityActivity::class.java))
                 }
                 R.id.nav_item3 ->{
                     startActivity(Intent(this, ProfileActivity::class.java))
