@@ -18,17 +18,16 @@ import org.json.JSONObject
 import tn.esprit.pdm.ProfileActivity
 import tn.esprit.pdm.R
 import tn.esprit.pdm.databinding.ActivityHomePageBinding
-import tn.esprit.pdm.databinding.ActivityProfilBinding
 import tn.esprit.pdm.models.Experience
-import tn.esprit.pdm.models.username
 import tn.esprit.pdm.uikotlin.SessionManager
 import tn.esprit.pdm.uikotlin.community.CommunityActivity
-import tn.esprit.pdm.uikotlin.educations.EducationAdapter
 import tn.esprit.pdm.uikotlin.experience.ExperienceActivity
 import tn.esprit.pdm.uikotlin.experience.ExperienceAdapter
 import tn.esprit.pdm.uikotlin.formation.FormationMain
-import tn.esprit.pdm.uikotlin.login.ForgetPasswordActivity
+import tn.esprit.pdm.uikotlin.hospital.DetailsHospital
 import tn.esprit.pdm.uikotlin.login.LoginActivity
+import tn.esprit.pdm.uikotlin.opportunity.OppoptunityActivity
+import tn.esprit.pdm.uikotlin.searchuser.SearchUsersActivity
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -81,7 +80,9 @@ private lateinit var binding:ActivityHomePageBinding
         fab2.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
-
+        binding.textView6.setOnClickListener(){
+            startActivity(Intent(this, SearchUsersActivity::class.java))
+        }
 
 
 
@@ -98,13 +99,16 @@ private lateinit var binding:ActivityHomePageBinding
                     startActivity(Intent(this, FormationMain::class.java))
                 }
                 R.id.education ->{
-                    startActivity(Intent(this, EducationAdapter::class.java))
+                    startActivity(Intent(this, OppoptunityActivity::class.java))
                 }
                 R.id.nav_item3 ->{
                     startActivity(Intent(this, ProfileActivity::class.java))
                 }
                 R.id.nav_item1 ->{
                     startActivity(Intent(this, CommunityActivity::class.java))
+                }
+                R.id.nav_hospital ->{
+                    startActivity(Intent(this, DetailsHospital::class.java))
                 }
                 R.id.nav_item2 ->{
                     val builder = AlertDialog.Builder(this)

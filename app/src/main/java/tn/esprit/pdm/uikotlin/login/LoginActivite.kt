@@ -14,8 +14,6 @@ import com.google.gson.JsonParser
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import tn.esprit.pdm.HomeActivity
-import tn.esprit.pdm.ProfileActivity
 import tn.esprit.pdm.R
 import tn.esprit.pdm.databinding.LoginBinding
 import tn.esprit.pdm.models.request.LoginRequest
@@ -32,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        verifyToken()
+        verifToken()
 
         binding = LoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -86,6 +84,8 @@ class LoginActivity : AppCompatActivity() {
                         sessionManager.setUserEmail(response.body()?.get("token").toString())
                         sessionManager.setUserName(response.body()?.get("token").toString())
                         sessionManager.setuSERDescription(response.body()?.get("token").toString())
+                        sessionManager.setUserSkills(response.body()?.get("token").toString())
+                        sessionManager.setUserImage(response.body()?.get("token").toString())
                         val intent = Intent(this@LoginActivity, HomePageActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         startActivity(intent)
@@ -106,29 +106,39 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun verifyToken() {
+    private fun verifToken() {
         sessionManager = SessionManager(this)
-        val token = sessionManager.getUserId().toString()
-
-        if (!token.isNullOrBlank()) {
-            try {
+        val token = sessionManager.getToken().toString();
+        Log.d("Token", token)
+        if (token!=null){
+            try{
                 val jwt = JWT(token)
-                val expireDate: Date? = jwt.expiresAt
+                val expireDate : Date? = jwt.expiresAt
 
-                if (expireDate != null) {
-                    if (Date().after(expireDate)) {
+                if (expireDate != null){
+                    if (Date().after(expireDate)){
                         sessionManager.logout()
-                    } else {
-                        val intent = Intent(this, HomeActivity::class.java)
+                        val intent = Intent(this, LoginActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        startActivity(intent)
+                        finish()
+                    }else {
+                        val intent = Intent(this, HomePageActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         startActivity(intent)
                         finish()
                     }
                 }
-            } catch (exception: DecodeException) {
+            }catch(exception: DecodeException){
                 sessionManager.logout()
-                Log.e("Error", exception.toString())
+
+                Log.d( "Error", exception.toString())
             }
+        }else {
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            finish()
         }
     }
 

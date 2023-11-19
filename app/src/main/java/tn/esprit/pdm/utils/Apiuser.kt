@@ -1,39 +1,68 @@
-package tn.esprit.pdm.utils
+    package tn.esprit.pdm.utils
 
-import com.google.gson.JsonElement
-import com.google.gson.JsonObject
-import retrofit2.Call
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.POST
-import retrofit2.Retrofit
-import retrofit2.http.PUT
-import tn.esprit.pdm.models.request.LoginRequest
+    import com.google.gson.JsonElement
+    import com.google.gson.JsonObject
+    import retrofit2.Call
+    import retrofit2.converter.gson.GsonConverterFactory
+    import retrofit2.http.Body
+    import retrofit2.http.POST
+    import retrofit2.Retrofit
+    import retrofit2.http.GET
+    import retrofit2.http.PUT
+    import retrofit2.http.Path
+    import okhttp3.MultipartBody
+    import okhttp3.OkHttpClient
+    import okhttp3.RequestBody
+    import okhttp3.logging.HttpLoggingInterceptor
+    import retrofit2.http.Multipart
+    import retrofit2.http.Part
 
-interface Apiuser {
-    @POST("user/resetcode")
-    fun resetCode(@Body resetcodeRequest: LoginRequest): Call<JsonElement>
 
-    @POST("user/login")
-    fun seConnecter(@Body loginRequest: LoginRequest): Call<JsonObject>
-    @POST("user/register")
-    fun sInscrire(@Body signupRequest: LoginRequest): Call<JsonObject>
-    @POST("user/ForgetPassword")
-    fun sendPasswordResetCode(@Body resetPasswordRequest: LoginRequest): Call<JsonElement>
-    @POST("user/changerpassword")
-    fun changerPassword(@Body changerPasswordRequest: LoginRequest): Call<JsonElement>
-    @PUT("user/editprofile")
-    fun editprofile(@Body editProfileRequest: LoginRequest): Call<JsonObject>
+    import retrofit2.http.Query
+    import tn.esprit.pdm.models.request.LoginRequest
+    import tn.esprit.pdm.uikotlin.skills.SkillsAdapter
 
-    companion object {
+    interface Apiuser {
+        @POST("user/resetcode")
+        fun resetCode(@Body resetcodeRequest: LoginRequest): Call<JsonElement>
 
-        var BASE_URL = "http://192.168.139.1:9090/"
+        @POST("user/login")
+        fun seConnecter(@Body loginRequest: LoginRequest): Call<JsonObject>
+        @POST("user/register")
+        fun sInscrire(@Body signupRequest: LoginRequest): Call<JsonObject>
+        @POST("user/ForgetPassword")
+        fun sendPasswordResetCode(@Body resetPasswordRequest: LoginRequest): Call<JsonElement>
+        @POST("user/changerpassword")
+        fun changerPassword(@Body changerPasswordRequest: LoginRequest): Call<JsonElement>
+        @PUT("user/editprofile")
+        fun editprofile(@Body editProfileRequest: LoginRequest): Call<JsonObject>
+        @GET("user/skills/{userId}")
+        fun getSkills(@Path("userId") userId: String): Call<JsonObject>
+        @GET("user/search")
+        fun searchUsersByName(@Query("name") name: String): Call<List<LoginRequest>>
+        @Multipart
+        @POST("user/updateprofilephoto/{userId}")
+        fun updateProfilePhoto(
+            @Path("userId") userId: String,
+            @Part file: MultipartBody.Part
+        ): Call<LoginRequest>
 
-        fun create() : Apiuser {
-            val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-            return retrofit.create(Apiuser::class.java)
-    }}
-}
+
+
+
+
+        companion object {
+
+            var BASE_URL = "http://192.168.139.1:9090/"
+
+            fun create() : Apiuser {
+
+
+
+                val retrofit = Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+                return retrofit.create(Apiuser::class.java)
+        }}
+    }

@@ -5,7 +5,7 @@
     <item
         android:id="@+id/nav_item1"
         android:icon="@drawable/community_icon"
-        android:title="Item 1" />
+        android:title="Community" />
     <item
         android:id="@+id/nav_item3"
         android:icon="@drawable/iv_account"
@@ -13,11 +13,15 @@
     <item
         android:id="@+id/education"
         android:icon="@drawable/iv_account"
-        android:title="education" />
+        android:title="Opportunity" />
     <item
         android:id="@+id/formation"
         android:icon="@drawable/ic_account"
-        android:title="formation " />
+        android:title="formation/education " />
+    <item
+        android:id="@+id/nav_hospital"
+        android:icon="@drawable/ic_linkedin"
+        android:title="Hospitals"/>
     <item
         android:id="@+id/nav_item2"
         android:icon="@drawable/logout_ic"

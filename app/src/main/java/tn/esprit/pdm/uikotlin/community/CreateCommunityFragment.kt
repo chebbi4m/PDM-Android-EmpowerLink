@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import tn.esprit.pdm.R
-import tn.esprit.pdm.models.Community
 import tn.esprit.pdm.models.CommunityDTO
 import tn.esprit.pdm.uikotlin.SessionManager
 import tn.esprit.pdm.utils.CommunityServices

@@ -19,6 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <!-- CardView -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -33,15 +34,27 @@
 
         <!-- CardView content -->
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="632dp"
             android:background="@drawable/textbg"
             android:orientation="vertical">
+            <Button
+                android:id="@+id/btnUpdateProfilePhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update Profile Photo"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@color/white"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_container"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/idUrlImg"
@@ -50,6 +63,11 @@
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/profile"
                 app:shapeAppearanceOverlay="@style/Circular" />
+            <ImageView
+                android:id="@+id/updatephoto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/iv_account" />
 
             <android.widget.TextView
                 android:id="@+id/tiusername"
@@ -116,6 +134,8 @@
                 app:layout_constraintVertical_bias="20"
                 android:name="tn.esprit.pdm.uikotlin.login.NewsFragment"
                 tools:layout="@layout/fragment_news"/>
+
+
 
         </LinearLayout>
 

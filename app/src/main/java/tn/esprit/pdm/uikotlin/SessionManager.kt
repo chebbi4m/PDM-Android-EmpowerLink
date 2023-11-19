@@ -4,8 +4,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import com.auth0.android.jwt.JWT
+import tn.esprit.pdm.uikotlin.home.HomePageActivity
 
-class SessionManager (context: Context) {
+class SessionManager(context: Context) {
      private val sharedPreferences : SharedPreferences = context.getSharedPreferences("myPreferences", Context.MODE_PRIVATE)
      private val editor : SharedPreferences.Editor = sharedPreferences.edit()
 
@@ -14,7 +15,8 @@ class SessionManager (context: Context) {
     private val USER_EMAIL ="useremail"
     private val USER_NAME = "username"
     private val USER_DESCRIPTION ="description"
-
+    private val  USER_SKILLS = "skills"
+    private val USER_IMAGE = "image"
     fun setLogin(isLoggedIn: Boolean) {
         editor.putBoolean(IS_LOGGED_IN, isLoggedIn)
         editor.apply()
@@ -56,7 +58,25 @@ class SessionManager (context: Context) {
     fun getUserDescription(): String? {
         return sharedPreferences.getString(USER_DESCRIPTION, "").toString()
     }
+    fun getToken(): String? {
+        return sharedPreferences.getString(USER_ID, "").toString()
+    }
+    fun setUserSkills(skills: String) {
+        editor.putString(USER_SKILLS, skills)
+        editor.apply()
+    }
 
+    fun getUserSkills(): String? {
+        return sharedPreferences.getString(USER_SKILLS, "").toString()
+    }
+    fun setUserImage(image: String) {
+        editor.putString(USER_IMAGE, image)
+        editor.apply()
+    }
+
+    fun getUserImage(): String? {
+        return sharedPreferences.getString(USER_IMAGE, "").toString()
+    }
 
      fun logout() {
         editor.clear()
@@ -74,12 +94,14 @@ class SessionManager (context: Context) {
             val email = jwt.getClaim("email").asString()
             val role = jwt.getClaim("role").asString()
             val description = jwt.getClaim("description").asString()
+            val skills = jwt.getClaim("skills").asString()
+            val image = jwt.getClaim("image").asString()
 
-            return DecodedToken(userId, username, email, role , description)
+            return DecodedToken(userId, username, email, role , description , skills ,image)
         } catch (e: Exception) {
             Log.e("TokenDecoder", "Erreur lors du décodage du token : ${e.message}")
             // Gérer l'erreur de décodage, renvoyer un objet vide ou null selon vos besoins
-            return DecodedToken("", "", "", "","")
+            return DecodedToken("", "", "", "","","","")
         }
     }
     data class DecodedToken(
@@ -88,6 +110,8 @@ class SessionManager (context: Context) {
         val email: String?,
         val role: String?,
         val description: String?,
+        val skills: String?,
+        val image: String?,
 
     )
 }
