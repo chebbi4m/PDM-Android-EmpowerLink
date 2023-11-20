@@ -6,19 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="5dp">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+  ><TextView
+    android:id="@+id/txtAbout"
+    android:layout_width="363dp"
+    android:layout_height="700dp"
+    android:layout_margin="20dp"
+    android:gravity="center"
+    android:lineSpacingExtra="4sp"
+    android:text="des"
+    android:textColor="@color/black"
+    android:textSize="18sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" /></ScrollView>
 
-  <TextView
-      android:id="@+id/txtAbout"
-      android:layout_width="343dp"
-      android:layout_height="430dp"
-      android:layout_margin="20dp"
-      android:gravity="center"
-      android:lineSpacingExtra="4sp"
-      android:text="des"
-      android:textColor="@color/black"
-      android:textSize="18sp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

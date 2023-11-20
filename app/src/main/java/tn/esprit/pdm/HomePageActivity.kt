@@ -24,6 +24,7 @@ import tn.esprit.pdm.uikotlin.community.CommunityActivity
 import tn.esprit.pdm.uikotlin.experience.ExperienceActivity
 import tn.esprit.pdm.uikotlin.experience.ExperienceAdapter
 import tn.esprit.pdm.uikotlin.formation.FormationMain
+import tn.esprit.pdm.uikotlin.hospital.Addhopital
 import tn.esprit.pdm.uikotlin.hospital.DetailsHospital
 import tn.esprit.pdm.uikotlin.login.LoginActivity
 import tn.esprit.pdm.uikotlin.opportunity.OppoptunityActivity
@@ -108,7 +109,7 @@ private lateinit var binding:ActivityHomePageBinding
                     startActivity(Intent(this, CommunityActivity::class.java))
                 }
                 R.id.nav_hospital ->{
-                    startActivity(Intent(this, DetailsHospital::class.java))
+                    startActivity(Intent(this, Addhopital::class.java))
                 }
                 R.id.nav_item2 ->{
                     val builder = AlertDialog.Builder(this)

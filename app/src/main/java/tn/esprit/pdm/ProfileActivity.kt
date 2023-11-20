@@ -4,24 +4,21 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
-import com.google.gson.JsonObject
-import com.squareup.picasso.Picasso
-import okhttp3.MediaType
+import com.bumptech.glide.Glide
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -39,7 +36,9 @@ import tn.esprit.pdm.utils.Apiuser
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
-
+import com.bumptech.glide.annotation.GlideModule
+import com.bumptech.glide.module.AppGlideModule
+@GlideModule
 class ProfileActivity : AppCompatActivity() {
     private lateinit var sessionManager: SessionManager
     private lateinit var binding: ActivityProfilBinding
@@ -60,29 +59,32 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         sessionManager = SessionManager(this)
-        val token = sessionManager.getUserName().toString()
+        val token = sessionManager.getUserImage().toString()
         val decodedToken = sessionManager.decodeToken(token)
         binding.tiusername.text = decodedToken.username
-        val profileImageUrl = decodedToken.image
 
-// Utiliser Picasso pour charger l'image dans votre ImageView
-        if (profileImageUrl != null) {
-            if (profileImageUrl.isNotEmpty()) {
-                Picasso.get().load(profileImageUrl).into(binding.idUrlImg)
-            } else {
-                // Si l'URL de l'image n'est pas disponible, vous pouvez afficher une image par défaut ou gérer d'une autre manière.
-            }
-        }
-        // binding
+       Glide.with(this).load(decodedToken.image)
+            .circleCrop()
+            .override(170,170)
+            .into(binding.idUrlImg)
+
+
+
+        /*val imageUri = decodedToken.image.let { Uri.parse(it) }
+        Glide.with(this)
+            .load(imageUri)
+            .circleCrop()
+            .override(170, 170)
+            .into(binding.idUrlImg)*/
+
+
         binding.linkedin.setOnClickListener {
             changeFragment(NewsFragment(), "")
         }
         binding.github.setOnClickListener {
             changeFragment(SkillsFragment(), "")
         }
-        binding.btnUpdateProfilePhoto.setOnClickListener() {
 
-        }
         binding.updatephoto.setOnClickListener(){
             selectImage()
         }

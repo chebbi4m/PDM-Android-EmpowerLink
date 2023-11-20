@@ -9,15 +9,6 @@
     android:gravity="center"
     tools:context=".ProfileActivity">
 
-    <!-- Toolbar -->
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/nac_header"
-        android:layout_width="0dp"
-        android:layout_height="65dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
     <!-- CardView -->
@@ -39,22 +30,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="632dp"
-            android:background="@drawable/textbg"
+            android:background="@drawable/cardcolor"
             android:orientation="vertical">
-            <Button
-                android:id="@+id/btnUpdateProfilePhoto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Update Profile Photo"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@color/white"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_container"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/idUrlImg"
@@ -95,14 +73,14 @@
                     android:layout_height="50dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:src="@drawable/github_ic" />
+                    android:src="@drawable/skills_icon" />
 
                 <ImageView
                     android:id="@+id/linkedin"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="10dp"
-                    android:src="@drawable/ic_linkedin" />
+                    android:src="@drawable/detail_icon" />
 
                 <ImageView
                     android:layout_width="50dp"
@@ -117,7 +95,7 @@
                     android:layout_height="50dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_edit_profile" />
+                    android:src="@drawable/edit_icon" />
 
             </LinearLayout>
 

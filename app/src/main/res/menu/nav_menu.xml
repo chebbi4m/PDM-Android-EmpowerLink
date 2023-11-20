@@ -23,10 +23,6 @@
         android:icon="@drawable/ic_linkedin"
         android:title="Hospitals"/>
     <item
-        android:id="@+id/nav_hospital"
-        android:icon="@drawable/ic_linkedin"
-        android:title="Hospitals"/>
-    <item
         android:id="@+id/nav_item2"
         android:icon="@drawable/logout_ic"
         android:title="logout" />

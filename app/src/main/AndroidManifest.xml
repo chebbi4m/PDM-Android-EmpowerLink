@@ -20,6 +20,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".uikotlin.hospital.Addhopital"
+            android:exported="false" />
+        <activity
             android:name=".uikotlin.searchuser.SearchUsersActivity"
             android:exported="false" />
         <activity
