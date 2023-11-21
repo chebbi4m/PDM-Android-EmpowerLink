@@ -19,17 +19,19 @@ interface apiOpportunite {
     @GET("api/opportunite")
     fun getAllOpportunites(): Call<List<Opportunite>>
 
+
     companion object {
 
-        var BASE_URL = "http://192.168.100.1:9090/"
+        var BASE_URL = "http://192.168.139.1:9090/"
 
         fun create() : apiOpportunite {
+
+
+
             val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
             return retrofit.create(apiOpportunite::class.java)
         }}
-
-
 }
