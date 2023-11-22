@@ -15,7 +15,7 @@ interface apiHopital {
     fun addhop(@Body add:Servicesoc): Call<JsonObject>
     @GET("service/all") // Remplacez "/all" par le chemin correct de votre API
     fun getHopitaux(): Call<List<Servicesoc>>
-    @GET("service/{id}")
+    @GET("service/serviceSociaux/{id}")
     fun getHopitalDetails(@Path("id") hopitalId: String): Call<Servicesoc>
 
     companion object {

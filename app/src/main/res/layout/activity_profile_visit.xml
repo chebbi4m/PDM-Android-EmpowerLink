@@ -1,122 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/profilecard"
+    android:background="@color/blue"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingBottom="25dp"
+    android:padding="16dp"
     tools:context=".uikotlin.searchuser.VisitProfile">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="end"
-        android:orientation="horizontal">
-
-        <!-- RATE LL -->
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/ll_rate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="25dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_rate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
-
-                android:paddingTop="5dp"
-                android:text="4.5"
-                android:textColor="@color/blue"
-                android:textSize="20dp" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                app:tint="@color/blue"
-                android:src="@drawable/ic_account" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-        <!-- CHAT LL (VISIBLE ONLY WHEN APT ACCEPTED) -->
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_chat"
-            android:visibility="gone"
-            android:scaleX="-1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="35dp"
-            android:src="@drawable/ic_account"
-            app:tint="@color/blue"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <!-- Profile Image -->
     <ImageView
         android:id="@+id/iv_pic"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/profile" />
+        android:src="@drawable/profile"
+        android:layout_gravity="center_horizontal"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_fullname"
-        android:layout_width="wrap_content"
+    <!-- User Name -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="test name"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
 
-        android:textColor="@color/white"
-        android:textSize="24dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Name: "
+            android:textColor="@color/white"
+            android:textSize="24sp"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_speciality"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_fullname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test Name"
+            android:textColor="@color/white"
+            android:textSize="24sp"/>
+    </LinearLayout>
+
+    <!-- Speciality -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="test speciality"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
-        android:textColor="@color/white"
-        android:textSize="14dp"
-        tools:ignore="TextSizeCheck" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Speciality: "
+            android:textColor="@color/white"
+            android:textSize="24sp"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_address"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_speciality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test Speciality"
+            android:textColor="@color/white"
+            android:textSize="24sp"/>
+    </LinearLayout>
+
+    <!-- Address -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="test address"
-        android:textColor="@color/white"
-        android:textSize="12dp"
-        tools:ignore="TextSizeCheck" />
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
-    <!-- VISIBLE WHEN APT IS ACCEPTED (APT PRICE) -->
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address: "
+            android:textColor="@color/white"
+            android:textSize="24sp"/>
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test Address"
+            android:textColor="@color/white"
+            android:textSize="24sp"/>
+    </LinearLayout>
+
+    <!-- Skills -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/btn_bg"
-        android:backgroundTint="@color/red"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
-        android:paddingStart="10dp"
-        android:paddingTop="5dp"
-        android:paddingEnd="10dp"
-        android:paddingBottom="5dp"
-        android:text="250 TND"
-        android:textColor="@color/white"
-        android:textSize="12sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skills: "
+            android:textColor="@color/white"
+            android:textSize="24sp"/>
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+        <TextView
+            android:id="@+id/Skills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test Skills"
+            android:textColor="@color/white"
+            android:textSize="24sp"/>
+    </LinearLayout>
+
+</LinearLayout>

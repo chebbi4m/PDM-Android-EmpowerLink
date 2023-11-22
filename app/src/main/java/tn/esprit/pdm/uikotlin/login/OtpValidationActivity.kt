@@ -182,7 +182,7 @@ class OtpValidationActivity : AppCompatActivity() {
             // Further processing if needed
 
             // Redirect the user to the OTP validation activity
-            startActivity(Intent(this@OtpValidationActivity, ResetPasswordActivity::class.java))
+            startActivity(Intent(this@OtpValidationActivity, ResetPasswordActivity::class.java).apply {   addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK) })
             finish()
         } else {
             // Handle null response body

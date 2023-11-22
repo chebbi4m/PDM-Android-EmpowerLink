@@ -7,12 +7,12 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import tn.esprit.pdm.R
 import tn.esprit.pdm.databinding.ActivityDetailsHospitalBinding
-import tn.esprit.pdm.utils.ReservationHospital
+import tn.esprit.pdm.models.Servicesoc
 import tn.esprit.pdm.utils.apiHopital
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import tn.esprit.pdm.models.Servicesoc
+import tn.esprit.pdm.utils.ReservationHospital
 
 class DetailsHospital : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsHospitalBinding
@@ -23,8 +23,9 @@ class DetailsHospital : AppCompatActivity() {
         setContentView(binding.root)
 
         val button = findViewById<Button>(R.id.button)
+        val textView8 = findViewById<TextView>(R.id.textView8)
         val textView11 = findViewById<TextView>(R.id.textView11)
-        val hopitalId = intent.getStringExtra("hopitalId") ?: ""
+        val hopitalId = "655ba12b467819b918c22f6b"
 
         val apiHopital = apiHopital.create()
         val call = apiHopital.getHopitalDetails(hopitalId)
@@ -32,32 +33,31 @@ class DetailsHospital : AppCompatActivity() {
             override fun onResponse(call: Call<Servicesoc>, response: Response<Servicesoc>) {
                 if (response.isSuccessful) {
                     val hopital = response.body()
-                    // Mettez à jour votre interface utilisateur avec les détails de l'hôpital
+                    // Update your UI with hospital details
                     updateUI(hopital)
                 } else {
-                    // Gérer l'erreur ici
+                    // Handle error here
                 }
             }
 
             override fun onFailure(call: Call<Servicesoc>, t: Throwable) {
-                // Gérer l'erreur ici
+                // Handle error here
             }
         })
 
         button.setOnClickListener {
             val startReservationHospital = Intent(this@DetailsHospital, ReservationHospital::class.java)
-            // Ajouter l'ID de l'hôpital à l'intent pour la prochaine activité
+            // Add hospital ID to the intent for the next activity
             startReservationHospital.putExtra("hopitalId", hopitalId)
             startActivity(startReservationHospital)
         }
     }
 
     private fun updateUI(hopital: Servicesoc?) {
-        // Mettez à jour votre interface utilisateur avec les détails de l'hôpital
         if (hopital != null) {
-            binding.textView11.text = hopital.description.toString()
-            // Mettez à jour d'autres vues en fonction de vos besoins
+            binding.textView8.text = hopital.nom ?: "No Name"
+            binding.textView11.text = hopital.description ?: "No Description"
+            // Update other views as needed
         }
     }
 }
-

@@ -15,17 +15,20 @@
         android:layout_marginTop="16dp" />
 
     <!-- RecyclerView to display search results -->
+
+    <!-- Loading progress bar (optional) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewUsers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
-        android:clipToPadding="false"
-        android:clipChildren="false"
+        android:layout_above="@+id/loadingProgressBar"
         android:layout_below="@+id/searchEditText"
-        android:layout_above="@+id/loadingProgressBar" />
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="-891dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:padding="16dp" />
 
-    <!-- Loading progress bar (optional) -->
     <ProgressBar
         android:id="@+id/loadingProgressBar"
         android:layout_width="58dp"

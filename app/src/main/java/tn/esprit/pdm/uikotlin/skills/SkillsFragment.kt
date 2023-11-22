@@ -42,7 +42,7 @@ class SkillsFragment : Fragment() {
         skillAdapter = SkillsAdapter(mutableListOf()) // Utilisez une liste mutable ici
 
         skillsList.adapter = skillAdapter
-         skillsList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+          skillsList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
             binding.imageView7.setOnClickListener {
                 startActivity(Intent(requireContext(), SkillsAdd::class.java))

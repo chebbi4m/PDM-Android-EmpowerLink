@@ -6,7 +6,8 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    >
 
     <!-- Main content -->
     <RelativeLayout
@@ -38,23 +39,25 @@
                 android:layout_marginStart="32dp"
                 android:text="Newest experiences :"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/homePageListView"
+                app:layout_constraintBottom_toTopOf="@+id/homePageRecyclerView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.845" />
 
-            <ListView
-                android:id="@+id/homePageListView"
-                android:layout_width="363dp"
-                android:layout_height="492dp"
-                android:layout_marginBottom="24dp"
-                android:divider="@android:color/darker_gray"
-                android:dividerHeight="1dp"
-                android:padding="16dp"
+            <!-- Replace your existing ListView with RecyclerView -->
 
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/homePageRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="120dp"
+                android:layout_marginBottom="24dp"
+
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -78,8 +81,10 @@
                 android:id="@+id/textView6"
                 android:layout_width="114dp"
                 android:layout_height="27dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="72dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="68dp"
+                android:textStyle="bold"
+                android:textSize="20dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -88,12 +93,43 @@
                 android:id="@+id/profileim"
                 android:layout_width="35dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="28dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toEndOf="@+id/textView6"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_account" />
 
+            <ImageView
+                android:id="@+id/recherche"
+                android:layout_width="80dp"
+                android:layout_height="74dp"
+                android:layout_marginEnd="56dp"
+                app:layout_constraintEnd_toStartOf="@+id/textView6"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/rechercher_icon" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/educationList"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/homePageRecyclerView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/suggesion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                tools:listitem="@layout/item_suggsetion"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/educationList"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
 
@@ -104,6 +140,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/nav_menu" />
+        app:menu="@menu/nav_menu"
+         />
 
 </androidx.drawerlayout.widget.DrawerLayout>

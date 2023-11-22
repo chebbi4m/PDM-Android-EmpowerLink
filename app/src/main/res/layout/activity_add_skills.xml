@@ -5,6 +5,7 @@
     android:id="@+id/context_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/cardcolor"
     tools:context=".uikotlin.skills.SkillsAdd">
 
 
@@ -34,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtForgotPwdDesc"
-        app:startIconDrawable="@drawable/ic_email">
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tiSkills"

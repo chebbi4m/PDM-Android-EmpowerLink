@@ -54,6 +54,11 @@
         <item name="postSplashScreenTheme">@style/Theme.PDM</item>
 
     </style>
+    <style name="DrawerMenuItemStyle">
+        <item name="android:textSize">18sp</item> <!-- Adjust text size -->
+        <item name="android:padding">16dp</item> <!-- Adjust padding -->
+    </style>
+
 
 
 </resources>

@@ -19,7 +19,8 @@ import tn.esprit.pdm.utils.apiOpportunite
 import java.util.Locale
 
 class OppoptunityActivity : AppCompatActivity() {
-
+    private var selectedLieu: String? = null
+    private var selectedTypeContrat: String? = null
     private lateinit var recyclerView: RecyclerView
     private lateinit var binding: OpportunityActivityBinding
     private lateinit var opportuniteAdapter: OpportuniteAdapter
@@ -65,6 +66,18 @@ class OppoptunityActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         })
+        val searchView = binding.searchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                filterList(query) // Ajoutez cette ligne pour filtrer les opportunités
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterList(newText) // Ajoutez cette ligne pour filtrer les opportunités
+                return true
+            }
+        })
     }
 
     private fun fetchOpportunitesFromBackend() {
@@ -88,5 +101,45 @@ class OppoptunityActivity : AppCompatActivity() {
                 Toast.makeText(this@OppoptunityActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+    private fun filterList(query: String?) {
+        val filteredList = ArrayList<Opportunite>()
+        val newList = opportuniteAdapter.getOpportunites()
+
+        newList.filterTo(filteredList) { opportunite ->
+            val matchQuery = query.isNullOrEmpty() || opportunite.description.contains(
+                query,
+                ignoreCase = true
+            )
+            val matchLieu =
+                selectedLieu.isNullOrEmpty() || opportunite.lieu.equals(selectedLieu, ignoreCase = true)
+            val matchTypeContrat = selectedTypeContrat.isNullOrEmpty() || opportunite.Typedecontrat.equals(
+                selectedTypeContrat,
+                ignoreCase = true
+            )
+
+            matchQuery && matchLieu && matchTypeContrat
+        }
+
+        if (query == "Ariana") {
+            binding.autoCompleteTextView.setText(query)
+        }
+
+        opportuniteAdapter.updateOpportunites(filteredList)
+    }
+
+    private fun filterOpportunites() {
+        val filteredList = opportuniteAdapter.getOpportunites().filter { opportunite ->
+            val matchLieu =
+                selectedLieu.isNullOrEmpty() || opportunite.lieu.equals(selectedLieu, ignoreCase = true)
+            val matchTypeContrat = selectedTypeContrat.isNullOrEmpty() || opportunite.Typedecontrat.equals(
+                selectedTypeContrat,
+                ignoreCase = true
+            )
+
+            matchLieu && matchTypeContrat
+        }
+
+        opportuniteAdapter.updateOpportunites(filteredList)
     }
 }

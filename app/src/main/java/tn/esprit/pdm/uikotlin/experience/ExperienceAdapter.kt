@@ -1,4 +1,3 @@
-// ExperienceAdapter.kt
 package tn.esprit.pdm.uikotlin.experience
 
 import android.annotation.SuppressLint
@@ -6,43 +5,38 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import tn.esprit.pdm.R
 import tn.esprit.pdm.models.Experience
 
 class ExperienceAdapter(
-    context: Context,
+    private val context: Context,
     private val experiences: List<Experience>,
     private val onItemClick: (Experience) -> Unit
-) : ArrayAdapter<Experience>(context, R.layout.experience__item, experiences) {
+) : RecyclerView.Adapter<ExperienceAdapter.ExperienceViewHolder>() {
 
-    @SuppressLint("ResourceType")
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.experience__item, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExperienceViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.experience__item, parent, false)
+        return ExperienceViewHolder(view)
+    }
 
-      //val experienceImage: ImageView = view.findViewById(R.drawable.profile) // Assuming this is the correct ID
+    override fun onBindViewHolder(holder: ExperienceViewHolder, position: Int) {
+        val experience = experiences[position]
 
-        val experienceTitle: TextView = view.findViewById(R.id.experienceTitle)
-        val experienceDate: TextView = view.findViewById(R.id.experienceDate)
+        holder.experienceTitle.text = experience.experienceTitle
+        holder.experienceDate.text = experience.experienceDate
 
-        val experience = getItem(position)
-
-        experience?.let {
-            // Assuming creatorImage is an Int representing a drawable resource
-          //  experienceImage.setImageResource(R.drawable.profile)
-            experienceTitle.text = it.experienceTitle
-            experienceDate.text = it.experienceDate
+        holder.itemView.setOnClickListener {
+            onItemClick(experience)
         }
+    }
 
-        // Set click listener for the item
-        view.setOnClickListener {
-            experience?.let {
-                onItemClick(it)
-            }
-        }
+    override fun getItemCount(): Int = experiences.size
 
-        return view
+    inner class ExperienceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val experienceTitle: TextView = itemView.findViewById(R.id.experienceTitle)
+        val experienceDate: TextView = itemView.findViewById(R.id.experienceDate)
+        // Add other views if needed
     }
 }

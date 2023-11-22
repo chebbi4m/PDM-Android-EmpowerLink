@@ -17,6 +17,6 @@ data class LoginRequest(
     var userId:String? = null,
     var description:String?=null,
     var skills: List<String>? = null,
-    var image: String? = null
-
+    var image: String? = null,
+    var followers : List<String>? = null,
     ) : Serializable

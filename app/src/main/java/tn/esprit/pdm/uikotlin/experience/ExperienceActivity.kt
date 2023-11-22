@@ -2,9 +2,10 @@ package tn.esprit.pdm.uikotlin.experience
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.launch
 import tn.esprit.pdm.R
@@ -41,17 +42,16 @@ class ExperienceActivity : AppCompatActivity() {
     }
 
     private fun updateUI(communityExperiences: List<Experience>) {
-        val experienceListView: ListView = findViewById(R.id.experienceListView)
+        val experienceRecyclerView: RecyclerView = findViewById(R.id.homePageRecyclerView)
 
-        // Define the item click callback
-        val onItemClick: (Experience) -> Unit = { clickedExperience ->
+        // Set up RecyclerView with the ExperienceAdapter
+        val experienceAdapter = ExperienceAdapter(this@ExperienceActivity, communityExperiences) { clickedExperience ->
             // Handle item click as needed
             // For example, you can navigate to a detailed view
             Log.d("ExperienceClicked", "Clicked on experience: ${clickedExperience.experienceTitle}")
         }
 
-        val experienceAdapter = ExperienceAdapter(this@ExperienceActivity, communityExperiences, onItemClick)
-        experienceListView.adapter = experienceAdapter
+        experienceRecyclerView.adapter = experienceAdapter
+        experienceRecyclerView.layoutManager = LinearLayoutManager(this)
     }
-
 }

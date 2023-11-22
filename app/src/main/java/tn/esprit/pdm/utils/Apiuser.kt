@@ -50,8 +50,10 @@
         fun addSkills(@Body addSkillsRequest: LoginRequest): Call<JsonObject>
         @GET("user/get/{username}")
         fun getUserByName(@Path("username") username: String): Call<LoginRequest>
-
-
+        @PUT("user/follow")
+        fun followUser(@Body followRequest: LoginRequest): Call<JsonObject>
+        @GET("user/getuser")
+        fun getAllUsers(): Call<List<JsonObject>?>
 
 
 

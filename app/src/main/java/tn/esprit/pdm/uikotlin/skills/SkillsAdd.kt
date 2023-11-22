@@ -56,7 +56,7 @@ class SkillsAdd : AppCompatActivity() {
                 if (response.isSuccessful) {
                     // Handle successful response
                     val jsonObject = response.body()
-                    startActivity(Intent(this@SkillsAdd, ProfileActivity::class.java))
+                    startActivity(Intent(this@SkillsAdd, ProfileActivity::class.java).apply {   addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK) })
                     // Process jsonObject as needed
                 } else {
                     // Handle error response

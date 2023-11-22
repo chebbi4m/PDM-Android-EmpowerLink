@@ -12,15 +12,15 @@
         android:title="Item 2" />
     <item
         android:id="@+id/education"
-        android:icon="@drawable/iv_account"
+        android:icon="@drawable/opportinute_icon"
         android:title="Opportunity" />
     <item
         android:id="@+id/formation"
-        android:icon="@drawable/ic_account"
+        android:icon="@drawable/education_icon"
         android:title="formation/education " />
     <item
         android:id="@+id/nav_hospital"
-        android:icon="@drawable/ic_linkedin"
+        android:icon="@drawable/hospital_icon"
         android:title="Hospitals"/>
     <item
         android:id="@+id/nav_item2"
