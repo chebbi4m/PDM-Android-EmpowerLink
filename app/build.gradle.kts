@@ -63,5 +63,6 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.1")
+    implementation ("com.paypal.sdk:paypal-android-sdk:2.16.0")
 
 }

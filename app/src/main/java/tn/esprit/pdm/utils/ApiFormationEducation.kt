@@ -31,7 +31,7 @@ interface ApiFormationEducation {
     fun getAllEducations(): Call<MutableList<Education>>
     companion object {
 
-        var BASE_URL = "http://192.168.31.203:9090"
+        var BASE_URL = "http://172.19.96.1:9090"
 
         fun create(): ApiFormationEducation {
             val retrofit = Retrofit.Builder()
