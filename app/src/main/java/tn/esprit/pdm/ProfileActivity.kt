@@ -37,7 +37,11 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import com.bumptech.glide.annotation.GlideModule
-import com.bumptech.glide.module.AppGlideModule
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.target.Target
+import com.bumptech.glide.request.RequestListener
+
 @GlideModule
 class ProfileActivity : AppCompatActivity() {
     private lateinit var sessionManager: SessionManager
@@ -63,10 +67,43 @@ class ProfileActivity : AppCompatActivity() {
         val decodedToken = sessionManager.decodeToken(token)
         binding.tiusername.text = decodedToken.username
 
-       Glide.with(this).load(decodedToken.image)
+      Glide.with(this).load(decodedToken.image)
             .circleCrop()
-            .override(170,170)
+           .override(170,170)
             .into(binding.idUrlImg)
+      /*  val localImagePath = decodedToken.image ?: ""
+      //  val imageUri = SessionManager.convertToLocalUri(localImagePath)
+
+        val imageUri = decodedToken.image ?: ""
+        Glide.with(this)
+            .load(imageUri)
+            .circleCrop()
+            .override(20, 20)
+            .listener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    Log.e("Glide", "Image load failed: $e")
+                    return false
+                }
+
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    return false
+                }
+            })
+            .into(binding.idUrlImg)*/
+
+
+
 
 
 
@@ -269,7 +306,12 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun uploadImage(imageFile: File) {
-        val userId = "6550bce0a0d1a744ea94d641"
+        val token = sessionManager.getUserId().toString()
+        val decodedToken = sessionManager.decodeToken(token)
+
+        // Vérifiez si le décodage du jeton a réussi et obtenez l'ID de l'utilisateur
+        val userId = decodedToken.userId.toString()
+
         val requestFile: RequestBody = RequestBody.create("image/*".toMediaTypeOrNull(), imageFile)
         val body: MultipartBody.Part =
             MultipartBody.Part.createFormData("profilePhoto", imageFile.name, requestFile)

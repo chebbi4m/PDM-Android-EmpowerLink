@@ -18,7 +18,7 @@ import tn.esprit.pdm.R
 import tn.esprit.pdm.databinding.LoginBinding
 import tn.esprit.pdm.models.request.LoginRequest
 import tn.esprit.pdm.uikotlin.SessionManager
-import tn.esprit.pdm.uikotlin.home.HomePageActivity
+import tn.esprit.pdm.HomePageActivity
 import tn.esprit.pdm.utils.Apiuser
 import java.util.Date
 

@@ -1,4 +1,5 @@
-package tn.esprit.pdm.uikotlin.home
+package tn.esprit.pdm
+
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,11 +13,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import org.json.JSONObject
-import tn.esprit.pdm.ProfileActivity
-import tn.esprit.pdm.R
 import tn.esprit.pdm.databinding.ActivityHomePageBinding
 import tn.esprit.pdm.models.Experience
 import tn.esprit.pdm.uikotlin.SessionManager
@@ -29,6 +29,7 @@ import tn.esprit.pdm.uikotlin.hospital.DetailsHospital
 import tn.esprit.pdm.uikotlin.login.LoginActivity
 import tn.esprit.pdm.uikotlin.opportunity.OppoptunityActivity
 import tn.esprit.pdm.uikotlin.searchuser.SearchUsersActivity
+
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -59,14 +60,25 @@ private lateinit var binding:ActivityHomePageBinding
         // Décodez le token
         val decodedToken = sessionManager.decodeToken(token)
 
-        // Utilisez les informations du token
+
         binding.textView6.text = decodedToken.username
+        Glide.with(this).load(decodedToken.image)
+            .circleCrop()
+            .override(170,170)
+            .into(binding.profileim)
+
+
+
 
         val usernameTextView: TextView = navigationView.getHeaderView(0).findViewById(R.id.username) as TextView
 
 // Set the retrieved username to the TextView in the navigation drawer
         usernameTextView.text = decodedToken.email
 
+        Glide.with(this).load(decodedToken.image)
+            .circleCrop()
+            .override(170,170)
+            .into(navigationView.getHeaderView(0).findViewById(R.id.profileimage))
         // Set up ActionBarDrawerToggle
         toggle = ActionBarDrawerToggle(
             this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close

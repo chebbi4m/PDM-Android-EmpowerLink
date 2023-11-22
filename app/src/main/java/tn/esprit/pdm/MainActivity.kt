@@ -12,7 +12,7 @@ import com.auth0.android.jwt.DecodeException
 import com.auth0.android.jwt.JWT
 import tn.esprit.pdm.databinding.ActivityMainBinding
 import tn.esprit.pdm.uikotlin.SessionManager
-import tn.esprit.pdm.uikotlin.home.HomePageActivity
+import tn.esprit.pdm.HomePageActivity
 import tn.esprit.pdm.uikotlin.login.LoginActivity
 import tn.esprit.pdm.uikotlin.login.SignUpActivity
 import java.util.Date

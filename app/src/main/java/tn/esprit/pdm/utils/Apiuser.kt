@@ -46,6 +46,10 @@
             @Path("userId") userId: String,
             @Part file: MultipartBody.Part
         ): Call<LoginRequest>
+        @POST("user/addskills")
+        fun addSkills(@Body addSkillsRequest: LoginRequest): Call<JsonObject>
+        @GET("user/get/{username}")
+        fun getUserByName(@Path("username") username: String): Call<LoginRequest>
 
 
 

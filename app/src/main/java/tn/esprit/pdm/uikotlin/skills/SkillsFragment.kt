@@ -1,5 +1,6 @@
 package tn.esprit.pdm.uikotlin.skills
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import tn.esprit.pdm.utils.Apiuser
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import tn.esprit.pdm.ProfileActivity
 
 class SkillsFragment : Fragment() {
     private lateinit var sessionManager: SessionManager
@@ -40,17 +42,28 @@ class SkillsFragment : Fragment() {
         skillAdapter = SkillsAdapter(mutableListOf()) // Utilisez une liste mutable ici
 
         skillsList.adapter = skillAdapter
-        skillsList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+         skillsList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+            binding.imageView7.setOnClickListener {
+                startActivity(Intent(requireContext(), SkillsAdd::class.java))
+            }
 
         fetchSkills()
     }
 
     private fun fetchSkills() {
-        val userId = "6550bce0a0d1a744ea94d641"
+        val token = sessionManager.getUserId().toString()
+        val decodedToken = sessionManager.decodeToken(token)
+        val userId = decodedToken.userId.toString()
         val call = apiUser.getSkills(userId)
 
         call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                // Check if the fragment is still attached before proceeding
+                if (!isAdded || activity == null) {
+                    return
+                }
+
                 if (response.isSuccessful) {
                     val skillsObject = response.body()
                     Log.e("hhh", "Response successful")
@@ -60,8 +73,11 @@ class SkillsFragment : Fragment() {
                             ?.map { it.asString }
                             ?: emptyList()
 
-                        requireActivity().runOnUiThread {
-                            updateSkillsList(skillsList)
+                        // Check if the fragment is still attached before updating the UI
+                        if (isAdded && activity != null) {
+                            requireActivity().runOnUiThread {
+                                updateSkillsList(skillsList)
+                            }
                         }
                     }
                 } else {
@@ -72,11 +88,13 @@ class SkillsFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                Log.e("zzz", "Failure: ${t.message}")
+                // Check if the fragment is still attached before logging the failure
+                if (isAdded && activity != null) {
+                    Log.e("zzz", "Failure: ${t.message}")
+                }
             }
         })
     }
-
 
 
     private fun updateSkillsList(skillsList: List<String>) {

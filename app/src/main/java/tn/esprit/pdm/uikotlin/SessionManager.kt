@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import com.auth0.android.jwt.JWT
-import tn.esprit.pdm.uikotlin.home.HomePageActivity
+import tn.esprit.pdm.HomePageActivity
 
 class SessionManager(context: Context) {
      private val sharedPreferences : SharedPreferences = context.getSharedPreferences("myPreferences", Context.MODE_PRIVATE)
@@ -87,7 +87,7 @@ class SessionManager(context: Context) {
     fun decodeToken(token: String): DecodedToken {
         try {
             val jwt = JWT(token)
-
+            Log.d("TokenDecoder", "Decoding token: $token")
             // Extraire les informations du jeton
             val userId = jwt.getClaim("userId").asString()
             val username = jwt.getClaim("username").asString()
@@ -96,6 +96,7 @@ class SessionManager(context: Context) {
             val description = jwt.getClaim("description").asString()
             val skills = jwt.getClaim("skills").asString()
             val image = jwt.getClaim("image").asString()
+            Log.d("ImageUrl", "Image URL: $image")
 
             return DecodedToken(userId, username, email, role , description , skills ,image)
         } catch (e: Exception) {
@@ -114,4 +115,16 @@ class SessionManager(context: Context) {
         val image: String?,
 
     )
+    companion object {
+        fun convertToLocalUri(localPath: String): String {
+            // Implement the conversion logic here
+            return "file://$localPath"
+        }
+    }
+    private fun convertToLocalUri(localPath: String): String {
+        // Convert local file path to a valid URI
+        // You might need to adjust this based on your file path structure
+        return "file://$localPath"
+    }
+
 }

@@ -20,6 +20,7 @@ import tn.esprit.pdm.utils.Apiuser
 
 const val PREF_FILE = "USER_PREF"
 const val EMAIL = "EMAIL"
+
 class ForgetPasswordActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityForgetPasswordBinding
@@ -32,7 +33,7 @@ class ForgetPasswordActivity : AppCompatActivity() {
         binding = ActivityForgetPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-         mSharedPreferences = getSharedPreferences(PREF_FILE, MODE_PRIVATE)
+        mSharedPreferences = getSharedPreferences(PREF_FILE, MODE_PRIVATE)
         binding.tiEmail.addTextChangedListener(object : TextWatcher {
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -56,43 +57,43 @@ class ForgetPasswordActivity : AppCompatActivity() {
             sendEmail()
         }
 
-        binding.btnSendSMS.setOnClickListener {
-
-
-        }
-
-
     }
 
     private fun validateEmail(): Boolean {
-        binding.tiEmailLayout.isErrorEnabled = false
+        binding.tiEmailLayout.error = null
 
-        if (binding.tiEmail.text.toString().isEmpty()) {
+        val email = binding.tiEmail.text.toString().trim()
 
+        if (email.isEmpty()) {
+            binding.tiEmailLayout.error = "Email is required"
             binding.tiEmail.requestFocus()
             return false
-        } else {
-            binding.tiEmailLayout.isErrorEnabled = false
-        }
-
-        if (Patterns.EMAIL_ADDRESS.matcher(binding.tiEmail.text.toString()).matches()) {
-
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            binding.tiEmailLayout.error = "Enter a valid email address"
             binding.tiEmail.requestFocus()
             return false
-        } else {
-            binding.tiEmailLayout.isErrorEnabled = false
         }
 
         return true
     }
 
     private fun sendEmail() {
+        // Validate the email before proceeding
+        if (!validateEmail()) {
+            return  // Exit the function if email validation fails
+        }
+
+        // Create a LoginRequest object with the email
         val signupRequest = LoginRequest(
             email = binding.tiEmail.text.toString()
         )
+
+        // Save the email to SharedPreferences (if needed)
         val editor = mSharedPreferences.edit()
-        editor.putString(EMAIL , binding.tiEmail.text.toString())
+        editor.putString(EMAIL, binding.tiEmail.text.toString())
         editor.apply()
+
+        // Call the API to send the password reset code
         apiuser.sendPasswordResetCode(signupRequest)
             .enqueue(object : retrofit2.Callback<JsonElement> {
                 override fun onResponse(call: Call<JsonElement>, response: Response<JsonElement>) {
@@ -109,7 +110,6 @@ class ForgetPasswordActivity : AppCompatActivity() {
             })
     }
 
-
     private fun handleSuccessfulResponse(responseBody: JsonElement?) {
         // Check if the response body is not null
         if (responseBody != null) {
@@ -125,7 +125,6 @@ class ForgetPasswordActivity : AppCompatActivity() {
             handleFailure("Null response body")
         }
     }
-
 
     private fun handleErrorResponse(responseCode: Int) {
         // Display an error in case of an unsuccessful response

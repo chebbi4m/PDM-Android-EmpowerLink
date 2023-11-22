@@ -1,5 +1,7 @@
 package tn.esprit.pdm.uikotlin.searchuser
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -22,6 +24,8 @@ class SearchUsersActivity : AppCompatActivity() {
     private lateinit var loadingProgressBar: ProgressBar
     private lateinit var userAdapter: UserAdapter // Assuming you have implemented UserAdapter
     private lateinit var searchEditText: EditText
+    private lateinit var sharedPreferences: SharedPreferences
+    private val USERNAME_KEY = "username"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,14 +38,26 @@ class SearchUsersActivity : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = userAdapter
+        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
+        val savedUsername = sharedPreferences.getString(USERNAME_KEY, "")
         // Add a TextWatcher to detect changes in the searchEditText
         searchEditText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {
+            override fun beforeTextChanged(
+                charSequence: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
                 // Not needed for this example
             }
 
-            override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
+            override fun onTextChanged(
+                charSequence: CharSequence?,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
                 // Not needed for this example
             }
 
@@ -49,6 +65,7 @@ class SearchUsersActivity : AppCompatActivity() {
                 val searchName = editable.toString()
                 if (searchName.isNotBlank()) {
                     searchUsersByName(searchName)
+                    saveUsername(searchName)
                 } else {
                     // Handle the case where the searchEditText is empty
                 }
@@ -63,7 +80,10 @@ class SearchUsersActivity : AppCompatActivity() {
         val call = apiUser.searchUsersByName(name)
 
         call.enqueue(object : Callback<List<LoginRequest>> {
-            override fun onResponse(call: Call<List<LoginRequest>>, response: Response<List<LoginRequest>>) {
+            override fun onResponse(
+                call: Call<List<LoginRequest>>,
+                response: Response<List<LoginRequest>>
+            ) {
                 loadingProgressBar.visibility = View.GONE
 
                 if (response.isSuccessful) {
@@ -86,5 +106,10 @@ class SearchUsersActivity : AppCompatActivity() {
     private fun updateRecyclerView(users: List<LoginRequest>) {
         userAdapter = UserAdapter(this, users)
         recyclerView.adapter = userAdapter
+    }
+    private fun saveUsername(username: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString(USERNAME_KEY, username)
+        editor.apply()
     }
 }

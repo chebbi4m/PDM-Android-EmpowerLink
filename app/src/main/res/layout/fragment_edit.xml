@@ -9,11 +9,19 @@
         android:id="@+id/rvSkills"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         tools:layout_editor_absoluteX="7dp"
         tools:layout_editor_absoluteY="33dp"
         tools:listitem="@layout/itemskils">
 
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/add_ic" />
 </androidx.constraintlayout.widget.ConstraintLayout>

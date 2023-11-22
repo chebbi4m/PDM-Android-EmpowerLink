@@ -4,47 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/context_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".uikotlin.skills.SkillsAdd">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-31dp"
-        android:layout_marginEnd="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/header" />
 
-    <Button
-        android:id="@+id/btnReturn"
-        style="@style/Widget.Material3.Button.IconButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:icon="@drawable/uc_arrow_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txtForgotPwd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:gravity="start|center"
-        android:text="@string/txt_forgot_password"
-        android:textAppearance="?attr/textAppearanceBodyLarge"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnReturn" />
+
 
     <TextView
         android:id="@+id/txtForgotPwdDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start|center"
-        android:text="@string/txt_forgot_password_desc"
+        android:gravity="center"
+
+        android:textSize="30dp"
+        android:text="Add your skills"
         android:textAppearance="?attr/textAppearanceBodyMedium"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/imageView6"
@@ -55,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:hint="@string/input_email_or_phone"
+        android:hint="Skills"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +37,7 @@
         app:startIconDrawable="@drawable/ic_email">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiEmail"
+            android:id="@+id/tiSkills"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress" />
@@ -71,13 +45,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <android.widget.Button
-        android:id="@+id/btnSubmit"
+        android:id="@+id/addskills"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:layout_marginTop="152dp"
         android:background="@drawable/btn_bg"
-        android:text="@string/btn_submit"
+        android:text="Add"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +64,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtForgotPwd"
-        app:srcCompat="@drawable/forgotpwd" />
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/skillslogo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
