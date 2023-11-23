@@ -1,0 +1,30 @@
+<!-- nav_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Customize the menu items as needed -->
+    <item
+        android:id="@+id/nav_item1"
+        android:icon="@drawable/community_icon"
+        android:title="Community" />
+    <item
+        android:id="@+id/nav_item3"
+        android:icon="@drawable/iv_account"
+        android:title="Item 2" />
+    <item
+        android:id="@+id/education"
+        android:icon="@drawable/opportinute_icon"
+        android:title="Opportunity" />
+    <item
+        android:id="@+id/formation"
+        android:icon="@drawable/education_icon"
+        android:title="formation/education " />
+    <item
+        android:id="@+id/nav_hospital"
+        android:icon="@drawable/hospital_icon"
+        android:title="Hospitals"/>
+    <item
+        android:id="@+id/nav_item2"
+        android:icon="@drawable/logout_ic"
+        android:title="logout" />
+
+</menu>

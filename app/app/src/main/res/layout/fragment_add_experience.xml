@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fragment_add_experience.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:minWidth="300dp"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Experience Title"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Experience Text"
+        android:inputType="textMultiLine"
+        android:minHeight="100dp" />
+
+    <!-- Add more fields as needed -->
+
+    <Button
+        android:id="@+id/buttonCreateExperience"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Experience" />
+
+</LinearLayout>

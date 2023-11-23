@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">PDM</string>
+    <!--  Inputs | Labels | Buttons -->
+    <string name="input_suffix_Email">\@esprit.tn</string>
+    <string name="input_welcome">Welcome</string>
+    <string name="input_email">Email</string>
+    <string name="input_email_or_phone">Email/Phone</string>
+    <string name="input_full_name">FullName</string>
+    <string name="input_password">Password</string>
+    <string name="signin">Sign In</string>
+    <string name="input_confirm_password">Confirm Password</string>
+    <string name="loginto">Please log in into your account</string>
+
+    <string name="txt_or">OR</string>
+    <string name="txt_forgot_password">Forgot Password</string>
+    <string name="txt_otp_validation">Enter the code sent to you by Email or Mobile number</string>
+    <string name="txt_reset_password">Reset Password</string>
+    <string name="txt_no_reception">Didn\'t receive a verification code?</string>
+    <string name="txt_forgot_password_desc">Please enter your registered email to reset your password</string>
+    <string name="txt_reset_password_desc">Please enter your new password and confirm it.</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_signup">Submit</string>
+    <string name="btn_submit">Submit</string>
+    <string name="btn_verify">Verify</string>
+    <string name="btn_sendSMS">Send SMS</string>
+    <string name="btn_register_now">Don\'t have an account? <u>Register Now</u> </string>
+    <string name="btn_resend_code"><u>Resend code</u></string>
+    <string name="btn_terms_and_privacy">By registering you agree to our <u>Terms &amp; Conditions</u> and <u>Privacy Policy</u></string>
+    <string name="btn_forgot_password">Forgot password ?</string>
+    <string name="btn_remember_me">Remember Me</string>
+    <string name="Content_description_facebook_button">Facebook Login</string>
+    <string name="Content_description_google_button">Google Login</string>
+    <string name="started">Lets get started</string>
+    <string name="old"> Existing  User / Get started</string>
+    <string name="newuser"> New User? <u>Create new account</u></string>
+    <string name="edit">Edit Compte</string>
+
+    <!--  ErrorsMessages  -->
+    <string name="msg_must_not_be_empty">Must not be empty!</string>
+    <string name="msg_check_your_email">Must be a valid email!</string>
+    <string name="msg_check_your_characters">Must be a at least 6 characters!</string>
+    <string name="msg_check_your_confirm_Password">Must be the same password!</string>
+    <string name="msg_error_inputs">You Have some errors in your inputs!</string>
+    <string name="msg_error_wrong_code">Wrong code!</string>
+
+
+    <string name="msg_coming_soon">Coming soon :)</string>
+    <string name="view">View</string>
+    <string name="follow">Follow</string>
+    <string name="project">Project</string>
+
+    <string name="open_nav">Open Navigation Drawer</string>
+    <string name="close_nav">Close Navigation Drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <string name="architecte_applications_mobiles">salaire 2000$</string>
+    <string name="concepteur_experience_utilisateur_mobile">salaire 3400$</string>
+    <string name="developpeur_applications_android">salaire 2500$</string>
+    <string name="developpeur_applications_hybrides">salaire 5000$</string>
+    <string name="developpeur_applications_ios">salaire 2700$</string>
+    <string name="developpeur_applications_mobiles">salaire 4000$</string>
+    <string name="developpeur_interface_utilisateur_mobile">salaire 3000$</string>
+    <string name="software_developer">salaire 2400$</string>
+</resources>

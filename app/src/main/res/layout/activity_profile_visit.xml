@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/instagram_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".uikotlin.searchuser.VisitProfile">
+
+    <!-- Profile Image with Rounded Corners -->
+<ImageView
+android:id="@+id/iv_pic"
+android:layout_width="200dp"
+android:layout_height="200dp"
+    android:scaleType="centerCrop"
+android:src="@drawable/profile"
+android:layout_gravity="center_horizontal"
+android:background="@drawable/circle_background"
+    android:padding="8dp"/>
+
+    <!-- User Name -->
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_marginTop="20dp">
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="User Name: "
+    android:textColor="@color/white"
+    android:textSize="24sp"/>
+
+<TextView
+    android:id="@+id/tv_fullname"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Test Name"
+    android:textColor="@color/white"
+    android:textSize="24sp"/>
+</LinearLayout>
+
+    <!-- Speciality -->
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_marginTop="10dp">
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Speciality: "
+    android:textColor="@color/white"
+    android:textSize="24sp"/>
+
+<TextView
+    android:id="@+id/tv_speciality"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Test Speciality"
+    android:textColor="@color/white"
+    android:textSize="24sp"/>
+</LinearLayout>
+
+    <!-- Address -->
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_marginTop="10dp">
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Address: "
+    android:textColor="@color/white"
+    android:textSize="24sp"/>
+
+<TextView
+    android:id="@+id/tv_address"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Test Address"
+    android:textColor="@color/white"
+    android:textSize="24sp"/>
+</LinearLayout>
+
+    <!-- Skills -->
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_marginTop="10dp">
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Skills: "
+    android:textColor="@color/white"
+    android:textSize="24sp"/>
+
+<TextView
+    android:id="@+id/Skills"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Test Skills"
+    android:textColor="@color/white"
+    android:textSize="24sp"/>
+</LinearLayout>
+
+    <!-- Follow Button with Instagram-like Design -->
+<Button
+android:id="@+id/follow"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:text="Follow"
+android:background="@drawable/instagram_button_background"
+    android:textColor="@color/blue"/>
+
+    </LinearLayout>

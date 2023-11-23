@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PDM"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="244005885594-gh4q3at3k5g0i56oivthbanlmqr5kfmo.apps.googleusercontent.com" />
+        <activity
+            android:name=".uikotlin.opportunity.DescriptionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.searchuser.VisitProfile"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.skills.SkillsAdd"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.opportunity.Addopportunite"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.hospital.Addhopital"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.searchuser.SearchUsersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.hospital.ReservationHospital"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.formation.FormationMain"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.formation.DetailsFormationsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.login.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomePageActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.login.ResetPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.login.OtpValidationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.login.ForgetPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.login.SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.login.LoginActivite"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.opportunity.DescriptionData"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.opportunity.OppoptunityActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.hospital.DetailsHospital"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.hospital.HospitalListView"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.serviceSocial.SocialServiceActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="locked"
+            android:theme="@style/Theme.App.Starting">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".uikotlin.community.CommunityActivity"
+            android:exported="true" />
+        <activity
+            android:name=".uikotlin.experience.CommunityExperiencesActivity"
+            android:exported="true" />
+        <activity
+            android:name=".uikotlin.experience.ExperienceActivity"
+            android:exported="false"></activity>
+    </application>
+
+</manifest>

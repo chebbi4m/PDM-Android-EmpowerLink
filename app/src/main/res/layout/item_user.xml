@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/userProfileImageView"
+        android:layout_width="57dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_account" />
+
+    <TextView
+        android:id="@+id/usernameTextView"
+        android:layout_width="165dp"
+        android:layout_height="33dp"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <!-- Add other user details views as needed -->
+
+</LinearLayout>
