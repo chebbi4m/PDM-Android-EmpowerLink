@@ -1,0 +1,33 @@
+<!-- fragment_create_community.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical"
+    android:padding="25dp"
+    tools:context=".uikotlin.opportunity.Addopportunite">
+
+    <EditText
+        android:id="@+id/opportuniteTitleEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="title"
+        android:minWidth="150dp" />
+
+    <EditText
+        android:id="@+id/opportuniteDescriptionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="Description" />
+
+
+
+    <Button
+        android:id="@+id/ajoutopportuniteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ajout opportunite" />
+</LinearLayout>

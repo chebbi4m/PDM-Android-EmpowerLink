@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="blue">#4280EF</color>
+    <color name="orange">#F78720</color>
+    <color name="dark_grey">#FF2A2A2A</color>
+    <color name="red">#FF0000</color>
+    <color name="BGToLB">#425968</color>
+    <color name="grey">#FF666666</color>
+
+
+    <color name="yellow">#FFFF00</color>
+
+    <color name="transparent">#00FFFFFF</color>
+
+    <color name="Primary">#EBEFF6</color>
+    <color name="Secondary">#0c0f18</color>
+
+    <color name="instagramGray">#E0E0E0</color>
+    <color name="colorPrimary">#00C7F9</color>
+    <color name="colorPrimaryDark">#418FA6</color>
+    <color name="colorPrimaryLight">#7DE0FE</color>
+    <color name="colorPrimaryOverLay">#CC00A2F9</color>
+
+    <color name="colorSecondary">#0c0f18</color>
+    <color name="colorSecondaryDark">#333744</color>
+    <color name="colorSecondaryLight">#111d40</color>
+    <color name="colorSecondaryOverLay">#CC0c0f18</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <color name="lavender">#8692f7</color>
+
+
+</resources>
