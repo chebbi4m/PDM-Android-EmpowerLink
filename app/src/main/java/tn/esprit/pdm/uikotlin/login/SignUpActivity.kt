@@ -223,7 +223,7 @@ class SignUpActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                     if (response.isSuccessful) {
                         // Traitement réussi, redirigez l'utilisateur vers l'activité d'accueil par exemple
-                        startActivity(Intent(this@SignUpActivity, LoginActivity::class.java).apply {   addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK) })
+                        startActivity(Intent(this@SignUpActivity, LoginActivite::class.java).apply {   addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK) })
                     } else {
                         // Afficher une erreur en cas de réponse non réussie
                         Snackbar.make(binding.root, "Error: ${response.code()}", Snackbar.LENGTH_SHORT).show()

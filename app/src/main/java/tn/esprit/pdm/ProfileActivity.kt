@@ -31,7 +31,7 @@ import tn.esprit.pdm.models.request.LoginRequest
 import tn.esprit.pdm.uikotlin.SessionManager
 import tn.esprit.pdm.uikotlin.skills.SkillsFragment
 import tn.esprit.pdm.uikotlin.login.EditProfileActivity
-import tn.esprit.pdm.uikotlin.login.LoginActivity
+import tn.esprit.pdm.uikotlin.login.LoginActivite
 import tn.esprit.pdm.uikotlin.login.NewsFragment
 import tn.esprit.pdm.utils.Apiuser
 import java.io.File
@@ -178,7 +178,7 @@ class ProfileActivity : AppCompatActivity() {
     private fun logout() {
         sessionManager = SessionManager(this)
         sessionManager.logout()
-        val intent = Intent(this, LoginActivity::class.java)
+        val intent = Intent(this, LoginActivite::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
         finish()

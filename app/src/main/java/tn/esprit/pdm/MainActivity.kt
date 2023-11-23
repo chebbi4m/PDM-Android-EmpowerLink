@@ -13,7 +13,7 @@ import com.auth0.android.jwt.JWT
 import tn.esprit.pdm.databinding.ActivityMainBinding
 import tn.esprit.pdm.uikotlin.SessionManager
 import tn.esprit.pdm.HomePageActivity
-import tn.esprit.pdm.uikotlin.login.LoginActivity
+import tn.esprit.pdm.uikotlin.login.LoginActivite
 import tn.esprit.pdm.uikotlin.login.SignUpActivity
 import java.util.Date
 
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         //val contextView=binding.contextView
 
         binding.btnLoginwelcome.setOnClickListener{
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, LoginActivite::class.java))
 
 
         }
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                 if (expireDate != null){
                     if (Date().after(expireDate)){
                         sessionManager.logout()
-                        val intent = Intent(this, LoginActivity::class.java)
+                        val intent = Intent(this, LoginActivite::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         startActivity(intent)
                         finish()
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d( "Error", exception.toString())
             }
         }else {
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, LoginActivite::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
             finish()

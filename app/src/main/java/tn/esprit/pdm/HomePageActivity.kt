@@ -25,7 +25,7 @@ import tn.esprit.pdm.uikotlin.experience.ExperienceActivity
 import tn.esprit.pdm.uikotlin.experience.ExperienceAdapter
 import tn.esprit.pdm.uikotlin.formation.FormationMain
 import tn.esprit.pdm.uikotlin.hospital.Addhopital
-import tn.esprit.pdm.uikotlin.login.LoginActivity
+import tn.esprit.pdm.uikotlin.login.LoginActivite
 import tn.esprit.pdm.uikotlin.opportunity.OppoptunityActivity
 import tn.esprit.pdm.uikotlin.searchuser.SearchUsersActivity
 import java.io.BufferedReader
@@ -46,6 +46,7 @@ import java.net.URL
 import kotlin.concurrent.thread
 import com.google.gson.JsonObject
 import tn.esprit.pdm.models.username
+import tn.esprit.pdm.uikotlin.serviceSocial.SocialServiceActivity
 
 class HomePageActivity : AppCompatActivity() {
     private lateinit var sessionManager: SessionManager
@@ -136,7 +137,7 @@ class HomePageActivity : AppCompatActivity() {
                     startActivity(Intent(this, CommunityActivity::class.java))
                 }
                 R.id.nav_hospital -> {
-                    startActivity(Intent(this, Addhopital::class.java))
+                    startActivity(Intent(this, SocialServiceActivity::class.java))
                 }
                 R.id.nav_item2 -> {
                     val builder = AlertDialog.Builder(this)
@@ -232,7 +233,7 @@ class HomePageActivity : AppCompatActivity() {
     private fun logout() {
         sessionManager = SessionManager(this)
         sessionManager.logout()
-        val intent = Intent(this, LoginActivity::class.java)
+        val intent = Intent(this, LoginActivite::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
         finish()

@@ -103,7 +103,7 @@ class ResetPasswordActivity : AppCompatActivity() {
             // Further processing if needed
 
             // Redirect the user to the OTP validation activity
-            startActivity(Intent(this@ResetPasswordActivity, LoginActivity::class.java).apply {   addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK) })
+            startActivity(Intent(this@ResetPasswordActivity, LoginActivite::class.java).apply {   addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK) })
         } else {
             // Handle null response body
             handleFailure("Null response body")

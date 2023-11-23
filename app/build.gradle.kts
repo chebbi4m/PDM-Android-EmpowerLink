@@ -69,5 +69,7 @@ dependencies {
     annotationProcessor ("com.github.bumptech.glide:compiler:4.11.0")
     implementation ("com.github.bumptech.glide:glide:version_number")
     annotationProcessor ("com.github.bumptech.glide:compiler:version_number")
+    implementation ("com.google.android.gms:play-services-auth:20.0.0")
+    implementation ("com.google.android.gms:play-services-maps:18.0.0")
 
 }

@@ -12,7 +12,7 @@ import retrofit2.Response
 import tn.esprit.pdm.ProfileActivity
 import tn.esprit.pdm.models.request.LoginRequest
 import tn.esprit.pdm.uikotlin.SessionManager
-import tn.esprit.pdm.uikotlin.login.LoginActivity
+import tn.esprit.pdm.uikotlin.login.LoginActivite
 
 class SkillsAdd : AppCompatActivity() {
 

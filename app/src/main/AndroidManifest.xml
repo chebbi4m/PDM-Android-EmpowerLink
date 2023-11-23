@@ -19,6 +19,9 @@
         android:theme="@style/Theme.PDM"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="244005885594-gh4q3at3k5g0i56oivthbanlmqr5kfmo.apps.googleusercontent.com" />
         <activity
             android:name=".uikotlin.opportunity.DescriptionActivity"
             android:exported="false" />
@@ -38,7 +41,7 @@
             android:name=".uikotlin.searchuser.SearchUsersActivity"
             android:exported="false" />
         <activity
-            android:name=".utils.ReservationHospital"
+            android:name=".uikotlin.hospital.ReservationHospital"
             android:exported="false" />
         <activity
             android:name=".uikotlin.formation.FormationMain"
@@ -71,7 +74,7 @@
             android:name=".uikotlin.login.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".uikotlin.login.LoginActivity"
+            android:name=".uikotlin.login.LoginActivite"
             android:exported="false" />
         <activity
             android:name=".uikotlin.opportunity.DescriptionData"

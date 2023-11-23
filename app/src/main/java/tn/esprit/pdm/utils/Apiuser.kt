@@ -60,6 +60,9 @@
         @GET("user/countFollowing/{userId}")
         fun countFollowing(@Path("userId") userId: String): Call<JsonObject>
 
+        @POST("user/verifygoogle")
+        suspend fun signinGoogle (@Body googleToken: JsonObject) : JsonObject
+
 
 
         companion object {

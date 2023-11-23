@@ -12,11 +12,13 @@ import tn.esprit.pdm.models.Servicesoc
 
 interface apiHopital {
     @POST("service/add")
-    fun addhop(@Body add:Servicesoc): Call<JsonObject>
-    @GET("service/all") // Remplacez "/all" par le chemin correct de votre API
+    fun addhop(@Body add: Servicesoc): Call<JsonObject>
+
+    @GET("service/all")
     fun getHopitaux(): Call<List<Servicesoc>>
-    @GET("service/serviceSociaux/{id}")
-    fun getHopitalDetails(@Path("id") hopitalId: String): Call<Servicesoc>
+
+    @GET("service/getServiceSociauByNom/{nom}")
+    fun getHopitalDetails(@Path("nom") nom: String): Call<Servicesoc>
 
     companion object {
 

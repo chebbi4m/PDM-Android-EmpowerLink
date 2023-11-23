@@ -14,10 +14,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import tn.esprit.pdm.databinding.ActivityProfileVisitBinding
-
+import tn.esprit.pdm.uikotlin.SessionManager
 
 
 class VisitProfile : AppCompatActivity() {
+    private lateinit var sessionManager: SessionManager
     private lateinit var binding: ActivityProfileVisitBinding
     private lateinit var apiuser: Apiuser
     private lateinit var visitedUserId: String
@@ -25,6 +26,7 @@ class VisitProfile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileVisitBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        sessionManager = SessionManager(this)
 binding.tvFullname.setOnClickListener(){
 
 }
@@ -81,8 +83,10 @@ binding.tvFullname.setOnClickListener(){
     }
 
     private fun followUser() {
-        // Récupérez l'ID de l'utilisateur connecté à partir des préférences partagées
-        val userId = "6550bce0a0d1a744ea94d641"
+
+        val token = sessionManager.getUserImage().toString()
+        val decodedToken = sessionManager.decodeToken(token)
+        val userId = decodedToken.userId
         val targetUsername = getUsernameFromSharedPreferences()
         // Créer une instance de la demande de suivi
         val followRequest = LoginRequest(userId = userId, username = targetUsername)

@@ -1,5 +1,4 @@
-package tn.esprit.pdm.utils;
-
+package tn.esprit.pdm.uikotlin.hospital;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,7 @@ public class HospitalBaseAdapter extends BaseAdapter {
         this.context = ctx;
         this.ListHospital = ListHospital;
         this.ListImages = images;
-       // inflater = layoutInflater.from(ctx);
+        // inflater = layoutInflater.from(ctx);
     }
 
     @Override
@@ -35,7 +34,9 @@ public class HospitalBaseAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-       // convertView = inflater.inflate(R.layout.activity.activity_custom_list_view, root null)
+        // convertView = inflater.inflate(R.layout.activity.activity_custom_list_view, root null)
         return null;
     }
+
+
 }
