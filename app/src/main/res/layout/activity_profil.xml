@@ -27,26 +27,57 @@
 
 
 
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="632dp"
-            android:background="@drawable/cardcolor"
+            android:background="@drawable/instagram_background"
             android:orientation="vertical">
 
 
-            <com.google.android.material.imageview.ShapeableImageView
+            <ImageView
                 android:id="@+id/idUrlImg"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_gravity="center_horizontal"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/profile"
-                app:shapeAppearanceOverlay="@style/Circular" />
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/circle_background"
+            android:padding="8dp"
+            />
+
             <ImageView
                 android:id="@+id/updatephoto"
                 android:layout_width="match_parent"
+                android:layout_height="28dp"
+                app:srcCompat="@drawable/changephoto" />
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/iv_account" />
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:weightSum="2">
+                <TextView
+                    android:id="@+id/follow"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_marginStart="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TextView" />
+                <TextView
+                    android:id="@+id/Follwing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="20dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_marginStart="50dp"
+                    android:layout_weight="1"
+                    android:text="TextView" />
 
+            </LinearLayout>
             <android.widget.TextView
                 android:id="@+id/tiusername"
                 android:layout_width="wrap_content"
@@ -63,6 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
+                android:background="@color/white"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:weightSum="4">
@@ -100,8 +132,11 @@
             </LinearLayout>
 
             <!-- FragmentContainerView -->
+
+
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragment_container"
+                android:name="tn.esprit.pdm.uikotlin.login.NewsFragment"
                 android:layout_width="match_parent"
                 android:layout_height="346dp"
                 android:background="@color/white"
@@ -110,9 +145,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tiedit"
                 app:layout_constraintVertical_bias="20"
-                android:name="tn.esprit.pdm.uikotlin.login.NewsFragment"
-                tools:layout="@layout/fragment_news"/>
-
+                tools:layout="@layout/fragment_news" />
 
 
         </LinearLayout>

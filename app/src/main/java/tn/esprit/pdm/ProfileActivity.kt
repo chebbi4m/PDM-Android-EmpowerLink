@@ -11,6 +11,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -41,6 +42,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.RequestListener
+import com.google.gson.JsonObject
 
 @GlideModule
 class ProfileActivity : AppCompatActivity() {
@@ -62,11 +64,21 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(Intent(this, EditProfileActivity::class.java))
         }
 
+
+
+
         sessionManager = SessionManager(this)
         val token = sessionManager.getUserImage().toString()
         val decodedToken = sessionManager.decodeToken(token)
         binding.tiusername.text = decodedToken.username
+        val userId = decodedToken.userId.toString()
 
+        fetchFollowersCount(userId) { followersCount ->
+            binding.follow.text = "Followers: $followersCount"
+        }
+        fetchFollowingCount(userId) { followingCount ->
+            binding.Follwing.text = "Following: $followingCount"
+        }
       Glide.with(this).load(decodedToken.image)
             .circleCrop()
            .override(170,170)
@@ -335,6 +347,47 @@ class ProfileActivity : AppCompatActivity() {
             override fun onFailure(call: Call<LoginRequest>, t: Throwable) {
                 Log.e("NetworkError", "Error: ${t.message}")
                 Toast.makeText(applicationContext, "Network error", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+    private fun fetchFollowersCount(userId: String, callback: (String) -> Unit) {
+        apiUser.countFollowers(userId).enqueue(object : Callback<JsonObject> {
+            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                if (response.isSuccessful) {
+                    val followersCount = response.body()?.get("followersCount")?.asInt ?: 0
+                    // Handle the followers count as needed (e.g., update UI)
+                    Log.d("ProfileActivity", "Followers count: $followersCount")
+
+                    // Invoke the callback with the followers count
+                    callback.invoke(followersCount.toString())
+                } else {
+                    Log.e("ProfileActivity", "Failed to retrieve followers count")
+                }
+            }
+
+            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                Log.e("ProfileActivity", "Error fetching followers count: ${t.message}")
+            }
+        })
+    }
+
+    private fun fetchFollowingCount(userId: String, callback: (String) -> Unit) {
+        apiUser.countFollowing(userId).enqueue(object : Callback<JsonObject> {
+            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                if (response.isSuccessful) {
+                    val followingCount = response.body()?.get("followingCount")?.asInt ?: 0
+                    // Handle the following count as needed (e.g., update UI)
+                    Log.d("ProfileActivity", "Following count: $followingCount")
+
+                    // Invoke the callback with the following count
+                    callback.invoke(followingCount.toString())
+                } else {
+                    Log.e("ProfileActivity", "Failed to retrieve following count")
+                }
+            }
+
+            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                Log.e("ProfileActivity", "Error fetching following count: ${t.message}")
             }
         })
     }

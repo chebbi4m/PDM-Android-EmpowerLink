@@ -27,8 +27,10 @@ class VisitProfile : AppCompatActivity() {
         setContentView(binding.root)
 binding.tvFullname.setOnClickListener(){
 
-    followUser()
 }
+        binding.follow.setOnClickListener(){
+            followUser()
+        }
         apiuser = Apiuser.create()
         //visitedUserId = intent.getStringExtra() ?: ""
         // Get the visited user from the intent
@@ -77,32 +79,51 @@ binding.tvFullname.setOnClickListener(){
         val sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         return sharedPreferences.getString("username", "") ?: ""
     }
-    private fun followUser() {
-        val userId = "6550bce0a0d1a744ea94d641"
-        // Create a FollowRequest object with the visited user's ID
-        val followRequest = LoginRequest(userId = userId)
 
-        // Call the followUser endpoint
+    private fun followUser() {
+        // Récupérez l'ID de l'utilisateur connecté à partir des préférences partagées
+        val userId = "6550bce0a0d1a744ea94d641"
+        val targetUsername = getUsernameFromSharedPreferences()
+        // Créer une instance de la demande de suivi
+        val followRequest = LoginRequest(userId = userId, username = targetUsername)
+
+        // Appeler la méthode followUser de l'API
         apiuser.followUser(followRequest).enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 if (response.isSuccessful) {
-                    // Handle successful response
-                    val message = response.body()?.get("message")?.asString
-                    // Display a message to the user indicating success
-                    Toast.makeText(this@VisitProfile, message, Toast.LENGTH_SHORT).show()
+                    // Le suivi a réussi
+                    Toast.makeText(
+                        this@VisitProfile,
+                        "User followed successfully",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 } else {
-                    // Handle error response
-                    // You can get the error message from response.errorBody() if needed
-                    Toast.makeText(this@VisitProfile, "Failed to follow user", Toast.LENGTH_SHORT).show()
+                    // Gérer les erreurs de réponse
+                    Toast.makeText(
+                        this@VisitProfile,
+                        "Failed to follow user",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                // Handle network errors or other failures
-                Toast.makeText(this@VisitProfile, "Network error", Toast.LENGTH_SHORT).show()
+                // Gérer les erreurs de requête
+                Toast.makeText(
+                    this@VisitProfile,
+                    "Failed to follow user",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
     }
+
+    // Utilisez la fonction followUser dans votre code où vous souhaitez appeler la fonction de suivi
+// Par exemple, lorsque l'utilisateur appuie sur un bouton de suivi
+// Assurez-vous de définir les valeurs correctes pour userId et targetUserId
+
+
+
 
 
 }

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.JsonObject
 import retrofit2.Call
@@ -39,6 +40,10 @@ class EditProfileActivity:AppCompatActivity() {
         val token = sessionManager.getUserId().toString()
         val decodedToken = sessionManager.decodeToken(token)
 
+        Glide.with(this).load(decodedToken.image)
+            .circleCrop()
+            .override(170,170)
+            .into(binding.logoMain)
         // Vérifiez si le décodage du jeton a réussi et obtenez l'ID de l'utilisateur
         val userId = decodedToken.userId
 
