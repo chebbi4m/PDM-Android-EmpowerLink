@@ -88,7 +88,7 @@ class DetailsFormationsActivity : AppCompatActivity() {
                 call.enqueue(object : Callback<JsonObject> {
                     override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                         if (response.isSuccessful) {
-                            // Show AlertDialog on success
+                            /*// Show AlertDialog on success
                             AlertDialog.Builder(this@DetailsFormationsActivity)
                                 .setTitle("Success")
                                 .setMessage("Participant added successfully")
@@ -99,7 +99,13 @@ class DetailsFormationsActivity : AppCompatActivity() {
                                     finish()
                                     dialog.dismiss()
                                 }
-                                .show()
+                                .show()*/
+                            val intent = Intent(this@DetailsFormationsActivity, Paiement::class.java)
+
+
+
+                            // Start the activity
+                            startActivity(intent)
                         } else {
                             // Show AlertDialog on non-success response
                             AlertDialog.Builder(this@DetailsFormationsActivity)

@@ -44,6 +44,9 @@
             android:name=".uikotlin.hospital.ReservationHospital"
             android:exported="false" />
         <activity
+            android:name=".uikotlin.formation.Paiement"
+            android:exported="false" />
+        <activity
             android:name=".uikotlin.formation.FormationMain"
             android:exported="false" />
         <activity
@@ -111,7 +114,7 @@
             android:exported="true" />
         <activity
             android:name=".uikotlin.experience.ExperienceActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>
