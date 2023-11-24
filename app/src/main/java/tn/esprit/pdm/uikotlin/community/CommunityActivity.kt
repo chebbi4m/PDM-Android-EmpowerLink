@@ -5,13 +5,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONObject
 import tn.esprit.pdm.R
 import tn.esprit.pdm.models.Community
-import tn.esprit.pdm.uikotlin.SessionManager
 import tn.esprit.pdm.uikotlin.experience.ExperienceActivity
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -50,9 +50,12 @@ class CommunityActivity : AppCompatActivity(), CreateCommunityFragment.OnCommuni
                     val communityId = selectedCommunity.id
 
                     // Open ExperienceActivity with the community ID
+                    // In CommunityActivity.kt
                     val intent = Intent(this, ExperienceActivity::class.java)
                     intent.putExtra("communityId", communityId.toInt())
+                    Log.d("IntentDebug", "Starting activity: ${ExperienceActivity::class.java.simpleName}")
                     startActivity(intent)
+
                 }
                 communityListView.adapter = adapter
             }
@@ -127,6 +130,7 @@ class CommunityActivity : AppCompatActivity(), CreateCommunityFragment.OnCommuni
                     startActivity(intent)
                 }
                 communityListView.adapter = adapter
+
             }
         }
     }
