@@ -130,6 +130,7 @@
 
     </LinearLayout>
 
+
     <android.widget.Button
         android:id="@+id/btnVerify"
         android:layout_width="0dp"

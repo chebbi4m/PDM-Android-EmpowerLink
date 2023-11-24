@@ -33,6 +33,7 @@
     <string name="started">Lets get started</string>
     <string name="old"> Existing  User / Get started</string>
     <string name="newuser"> New User? <u>Create new account</u></string>
+    <string name="edit">Edit Compte</string>
 
     <!--  ErrorsMessages  -->
     <string name="msg_must_not_be_empty">Must not be empty!</string>
@@ -47,4 +48,19 @@
     <string name="view">View</string>
     <string name="follow">Follow</string>
     <string name="project">Project</string>
+
+    <string name="open_nav">Open Navigation Drawer</string>
+    <string name="close_nav">Close Navigation Drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <string name="architecte_applications_mobiles">salaire 2000$</string>
+    <string name="concepteur_experience_utilisateur_mobile">salaire 3400$</string>
+    <string name="developpeur_applications_android">salaire 2500$</string>
+    <string name="developpeur_applications_hybrides">salaire 5000$</string>
+    <string name="developpeur_applications_ios">salaire 2700$</string>
+    <string name="developpeur_applications_mobiles">salaire 4000$</string>
+    <string name="developpeur_interface_utilisateur_mobile">salaire 3000$</string>
+    <string name="software_developer">salaire 2400$</string>
 </resources>
