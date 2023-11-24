@@ -63,8 +63,12 @@ class ProfileActivity : AppCompatActivity() {
         binding.tiedit.setOnClickListener() {
             startActivity(Intent(this, EditProfileActivity::class.java))
         }
-
-
+        binding.imageView3.setOnClickListener(){
+            startActivity(Intent(this@ProfileActivity,HomePageActivity::class.java))
+        }
+binding.button5.setOnClickListener(){
+    logout()
+}
 
 
         sessionManager = SessionManager(this)
@@ -391,6 +395,7 @@ class ProfileActivity : AppCompatActivity() {
             }
         })
     }
+
 
 
 

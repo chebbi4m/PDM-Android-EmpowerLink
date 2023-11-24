@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
     android:gravity="center"
+
     tools:context=".ProfileActivity">
 
 
@@ -26,8 +27,6 @@
         <!-- CardView content -->
 
 
-
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="632dp"
@@ -39,45 +38,49 @@
                 android:id="@+id/idUrlImg"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/profile"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/circle_background"
-            android:padding="8dp"
-            />
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/profile" />
 
             <ImageView
                 android:id="@+id/updatephoto"
                 android:layout_width="match_parent"
                 android:layout_height="28dp"
                 app:srcCompat="@drawable/changephoto" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingStart="40dp"
                 android:weightSum="2">
+
                 <TextView
                     android:id="@+id/follow"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:layout_marginStart="30dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/Follwing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingStart="20dp"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
                     android:layout_marginStart="50dp"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:paddingStart="20dp"
+                    android:text="TextView"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
 
             </LinearLayout>
+
             <android.widget.TextView
                 android:id="@+id/tiusername"
                 android:layout_width="wrap_content"
@@ -114,12 +117,6 @@
                     android:layout_margin="10dp"
                     android:src="@drawable/detail_icon" />
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/facebook_icon" />
 
                 <ImageView
                     android:id="@+id/tiedit"
@@ -151,5 +148,26 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="105dp"
+        android:layout_height="49dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_return" />
+
+    <android.widget.Button
+        android:id="@+id/button5"
+        android:layout_width="343dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="4dp"
+        android:text="Log Out"
+        android:background="@drawable/logout"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

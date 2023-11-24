@@ -3,6 +3,7 @@ package tn.esprit.pdm.uikotlin.serviceSocial
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,7 @@ import tn.esprit.pdm.utils.apiHopital
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import tn.esprit.pdm.uikotlin.hospital.Addhopital
 import tn.esprit.pdm.uikotlin.hospital.DetailsHospital
 
 
@@ -24,7 +26,13 @@ class SocialServiceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_social_service)
         val listView: ListView = findViewById(R.id.HospitalListView)
+        val btnAddHospital: Button = findViewById(R.id.button4)
 
+        btnAddHospital.setOnClickListener {
+            // Redirect to the page for adding a hospital
+            val intent = Intent(this@SocialServiceActivity, Addhopital::class.java)
+            startActivity(intent)
+        }
         ApiHopital.getHopitaux().enqueue(object : Callback<List<Servicesoc>> {
             override fun onResponse(
                 call: Call<List<Servicesoc>>,

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Patterns
 import android.view.View
 
 import com.google.android.material.snackbar.Snackbar
@@ -130,7 +131,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun validateEmail(): Boolean {
-        /*    binding.tiEmailLayout.isErrorEnabled = false
+        binding.tiEmailLayout.isErrorEnabled = false
 
         if (binding.tiEmail.text.toString().isEmpty()) {
             binding.tiEmailLayout.error = getString(R.string.msg_must_not_be_empty)
@@ -140,15 +141,16 @@ class SignUpActivity : AppCompatActivity() {
             binding.tiEmailLayout.isErrorEnabled = false
         }
 
-        if (Patterns.EMAIL_ADDRESS.matcher(binding.tiEmail.text.toString()).matches()) {
+       /* if (Patterns.EMAIL_ADDRESS.matcher(binding.tiEmail.text.toString()).matches()) {
             binding.tiEmailLayout.error = getString(R.string.msg_check_your_email)
             binding.tiEmail.requestFocus()
             return false
-        }else{
-            binding.tiEmailLayout.isErrorEnabled = false
         }
+        else{
+            binding.tiEmailLayout.isErrorEnabled = false
+        }*/
 
-        */
+
         return true
     }
 
@@ -226,7 +228,7 @@ class SignUpActivity : AppCompatActivity() {
                         startActivity(Intent(this@SignUpActivity, LoginActivite::class.java).apply {   addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK) })
                     } else {
                         // Afficher une erreur en cas de réponse non réussie
-                        Snackbar.make(binding.root, "Error: ${response.code()}", Snackbar.LENGTH_SHORT).show()
+                        startActivity(Intent(this@SignUpActivity, LoginActivite::class.java).apply {   addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK) })
                     }
                 }
 

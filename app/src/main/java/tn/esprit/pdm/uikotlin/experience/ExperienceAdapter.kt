@@ -49,7 +49,7 @@ class ExperienceAdapter(
         private val dateTextView: TextView = itemView.findViewById(R.id.experienceDate)
         private val usernameTextView: TextView = itemView.findViewById(R.id.creatorName)
         private val textTextView: TextView = itemView.findViewById(R.id.experienceText)
-        
+
 
         fun bind(experience: Experience) {
             titleTextView.text = experience.experienceTitle

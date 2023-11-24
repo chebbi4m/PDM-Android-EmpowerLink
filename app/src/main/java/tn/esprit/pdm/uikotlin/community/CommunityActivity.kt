@@ -1,6 +1,5 @@
 // CommunityActivity.kt
 package tn.esprit.pdm.uikotlin.community
-
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler

@@ -18,7 +18,8 @@ interface apiOpportunite {
     fun addopp(@Body addopprtunite: Opportunite): Call<JsonObject>
     @GET("api/opportunite")
     fun getAllOpportunites(): Call<List<Opportunite>>
-
+    @POST("api/apply")
+    fun addParticipant(@Body info: AddParticipantRequest): Call<JsonObject>
 
     companion object {
 
@@ -34,4 +35,8 @@ interface apiOpportunite {
                 .build()
             return retrofit.create(apiOpportunite::class.java)
         }}
+    data class AddParticipantRequest(
+        val opportunityId: String,
+        val userId: String
+    )
 }

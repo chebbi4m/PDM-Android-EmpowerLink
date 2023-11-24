@@ -107,7 +107,7 @@ class OppoptunityActivity : AppCompatActivity() {
         val newList = opportuniteAdapter.getOpportunites()
 
         newList.filterTo(filteredList) { opportunite ->
-            val matchQuery = query.isNullOrEmpty() || opportunite.description.contains(
+            val matchQuery = query.isNullOrEmpty() || opportunite.description.toString().contains(
                 query,
                 ignoreCase = true
             )

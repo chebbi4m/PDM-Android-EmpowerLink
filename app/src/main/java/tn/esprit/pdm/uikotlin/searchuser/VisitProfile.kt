@@ -30,6 +30,9 @@ class VisitProfile : AppCompatActivity() {
 binding.tvFullname.setOnClickListener(){
 
 }
+        binding.imageView3.setOnClickListener(){
+        startActivity(Intent(this@VisitProfile,SearchUsersActivity::class.java))
+        }
         binding.follow.setOnClickListener(){
             followUser()
         }

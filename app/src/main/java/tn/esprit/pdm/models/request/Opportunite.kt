@@ -4,8 +4,9 @@ import java.io.Serializable
 
 data class Opportunite(
 
-    val title: String,
-    val description: String,
+    val title: String?=null,
+    val description: String?=null,
     val lieu: String?=null,
-    val Typedecontrat: String?=null
+    val Typedecontrat: String?=null,
+    val opportunityId:String?=null,
 ):Serializable

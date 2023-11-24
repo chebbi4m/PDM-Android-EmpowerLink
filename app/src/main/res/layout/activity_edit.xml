@@ -15,6 +15,14 @@
 
         <!-- ImageView for profile picture -->
         <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="105dp"
+            android:layout_height="49dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_return" />
+
+        <ImageView
             android:id="@+id/logo_main"
             android:layout_width="105dp"
             android:layout_height="105dp"
@@ -167,7 +175,6 @@
                 android:layout_height="wrap_content"
                 android:hint="Description"
                 android:backgroundTint="@color/instagramGray"
-                android:inputType="numberDecimal"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>

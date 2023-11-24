@@ -9,7 +9,7 @@
     <item
         android:id="@+id/nav_item3"
         android:icon="@drawable/iv_account"
-        android:title="Item 2" />
+        android:title="profile " />
     <item
         android:id="@+id/education"
         android:icon="@drawable/opportinute_icon"

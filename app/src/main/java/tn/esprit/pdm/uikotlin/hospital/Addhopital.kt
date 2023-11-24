@@ -32,7 +32,9 @@ class Addhopital : AppCompatActivity() {
     private fun addhopital() {
         val addhopital = Servicesoc(
             description = binding.tiFullName.text.toString(),
-            nom = binding.tiEmail.text.toString()
+            nom = binding.tiEmail.text.toString(),
+            nbParticipant = binding.tinombre.toString()
+
         )
 
         // Call the API registration method
@@ -44,7 +46,7 @@ class Addhopital : AppCompatActivity() {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 if (response.isSuccessful) {
                     // Successful processing, redirect the user to the home activity for example
-                    startActivity(Intent(this@Addhopital, SocialServiceActivity::class.java))
+                    startActivity(Intent(this@Addhopital, SocialServiceActivity::class.java).apply {   addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK) })
                 } else {
                     // Display an error in case of unsuccessful response
                     Snackbar.make(binding.root, "Error: ${response.code()}", Snackbar.LENGTH_SHORT).show()

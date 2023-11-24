@@ -9,6 +9,7 @@ import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import tn.esprit.pdm.HomePageActivity
 import tn.esprit.pdm.ProfileActivity
 import tn.esprit.pdm.models.request.LoginRequest
 import tn.esprit.pdm.uikotlin.SessionManager
@@ -25,7 +26,9 @@ class SkillsAdd : AppCompatActivity() {
         setContentView(binding.root)
 
         sessionManager = SessionManager(this) // Initialize sessionManager here
-
+        binding.imageView3.setOnClickListener(){
+            startActivity(Intent(this@SkillsAdd, ProfileActivity::class.java))
+        }
         binding.addskills.setOnClickListener {
             addSkills()
         }

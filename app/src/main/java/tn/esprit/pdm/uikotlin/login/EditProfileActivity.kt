@@ -30,7 +30,9 @@ class EditProfileActivity:AppCompatActivity() {
 
         // Initialiser la session
         sessionManager = SessionManager(this)
-
+        binding.imageView3.setOnClickListener(){
+        startActivity(Intent(this@EditProfileActivity,ProfileActivity::class.java))
+        }
         binding.registerButton.setOnClickListener {
             editProfile()
         }

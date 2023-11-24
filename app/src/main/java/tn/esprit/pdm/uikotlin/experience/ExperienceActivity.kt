@@ -1,4 +1,5 @@
 package tn.esprit.pdm.uikotlin.experience
+
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -44,13 +45,16 @@ class ExperienceActivity : AppCompatActivity() {
         }
 
         val addButton: FloatingActionButton = findViewById(R.id.addButton)
+        // Inside addButton.setOnClickListener
         addButton.setOnClickListener {
             // Show the AddExperienceFragment as a dialog
             val addExperienceFragment = AddExperienceFragment(
+                communityId.toString(),
                 { experience -> onExperienceAddedSuccessfully(experience, communityId.toString()) }
             )
             addExperienceFragment.show(supportFragmentManager, "addExperienceDialog")
         }
+
     }
 
     private fun updateUI(communityExperiences: List<Experience>) {

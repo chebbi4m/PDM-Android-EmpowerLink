@@ -5,10 +5,17 @@
     android:id="@+id/context_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/cardcolor"
+
     tools:context=".uikotlin.skills.SkillsAdd">
 
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="105dp"
+        android:layout_height="49dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_return" />
 
 
 
