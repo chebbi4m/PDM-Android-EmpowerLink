@@ -32,6 +32,7 @@ import java.util.Date
 
 class LoginActivite : AppCompatActivity() {
 
+
     private val apiUser = Apiuser.create()
     private lateinit var sessionManager: SessionManager
     private lateinit var binding: LoginBinding
@@ -43,7 +44,7 @@ class LoginActivite : AppCompatActivity() {
 
         binding = LoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        sessionManager = SessionManager(this)
         setupTextWatchers()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken("244005885594-2lau83gs84r77n3lgmlkj3ns2i336kli.apps.googleusercontent.com")
@@ -91,30 +92,34 @@ class LoginActivite : AppCompatActivity() {
                     Log.d("Google", idToken.toString())
                     CoroutineScope(Dispatchers.Main).launch {
                         try {
+
                             val json = JsonObject()
                             json.addProperty("googleIdToken", idToken)
                             val response = apiUser.signinGoogle( json)
                             val token = response.get("token").asString
-                            sessionManager.setUserId(response.get("token").toString())
-                            sessionManager.setUserEmail(response.get("token").toString())
-                            sessionManager.setUserName(response.get("token").toString())
-                            sessionManager.setuSERDescription(response.get("token").toString())
-                            sessionManager.setUserSkills(response.get("token").toString())
-                            sessionManager.setUserImage(response.get("token").toString())
+                            sessionManager.setUserId(token)
+                            sessionManager.setUserEmail(token)
+                            //sessionManager.setUserName(response.get("token").toString())
+                            //sessionManager.setuSERDescription(response.get("token").toString())
+                            //sessionManager.setUserSkills(response.get("token").toString())
+                            //sessionManager.setUserImage(response.get("token").toString())
 
                             val intent = Intent(this@LoginActivite, HomePageActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
                             startActivity(intent)
                             finish()
                         } catch (e: Exception) {
-                            Log.e("Google", "Error processing Google sign-in response", e)
-                            Snackbar.make(binding.root, "Error processing Google sign-in response", Snackbar.LENGTH_LONG).show()
+                            //   val intent = Intent(this@LoginActivite, HomePageActivity::class.java)
+                            // // startActivity(intent)
+
+                            Log.d("Error", e.toString())
+                            Snackbar.make(binding.root, "Error", Snackbar.LENGTH_LONG).show()
                         }
                     }
 
-
                 } catch (e: ApiException) {
                     Log.w("Google", "Google sign in failed", e)
+
                 }
             }
         }
@@ -189,7 +194,7 @@ class LoginActivite : AppCompatActivity() {
             }catch(exception: DecodeException){
                 sessionManager.logout()
 
-                Log.e("Error", "Error decoding JWT: ${exception.message}")
+                Log.d( "Error", exception.toString())
             }
         }else {
             val intent = Intent(this, LoginActivite::class.java)
