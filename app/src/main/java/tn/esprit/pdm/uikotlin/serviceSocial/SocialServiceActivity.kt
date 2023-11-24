@@ -1,5 +1,4 @@
 package tn.esprit.pdm.uikotlin.serviceSocial
-
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter

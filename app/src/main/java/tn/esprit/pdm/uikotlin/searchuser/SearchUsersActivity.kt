@@ -34,7 +34,6 @@ class SearchUsersActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerViewUsers)
         loadingProgressBar = findViewById(R.id.loadingProgressBar)
         searchEditText = findViewById(R.id.searchEditText)
-
         userAdapter = UserAdapter(this, emptyList()) // Initialize with an empty list
 
         recyclerView.layoutManager = LinearLayoutManager(this)
