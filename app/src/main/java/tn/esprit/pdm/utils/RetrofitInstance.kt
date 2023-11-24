@@ -4,7 +4,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
-    private const val BASE_URL = "http://192.168.139.1:9090/"
+    private const val BASE_URL = "http://10.0.2.2:9090"
+
 
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
@@ -19,6 +20,10 @@ object RetrofitInstance {
 
     fun createApiService(): ApiService {
         return retrofit.create(ApiService::class.java)
+    }
+
+    fun createExperienceService(): ExperienceServices {
+        return retrofit.create(ExperienceServices::class.java)
     }
 }
 

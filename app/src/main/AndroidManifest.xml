@@ -62,6 +62,43 @@
             android:name=".HomePageActivity"
             android:exported="true" />
         <activity
+            android:name=".uikotlin.experience.ExperienceActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".uikotlin.searchuser.VisitProfile"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.skills.SkillsAdd"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.opportunity.Addopportunite"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.hospital.Addhopital"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.searchuser.SearchUsersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".utils.ReservationHospital"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.formation.FormationMain"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.formation.DetailsFormationsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uikotlin.login.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomePageActivity"
+            android:exported="true" />
+        <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
@@ -102,7 +139,6 @@
             android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

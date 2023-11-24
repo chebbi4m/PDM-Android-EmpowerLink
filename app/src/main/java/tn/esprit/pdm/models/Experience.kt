@@ -12,7 +12,9 @@ data class Experience(
     @SerializedName("createdAt") val experienceDate: String,
     @SerializedName("text") val experienceText: String
 ) {
-    // Secondary constructor
+    // Secondary constructors
     constructor(username: String, title: String, communityId: String, experienceDate: String, experienceText: String)
             : this(username, title, "", communityId, R.drawable.profile, experienceDate, experienceText)
+    constructor(username: String, title: String, communityId: String, text: String)
+            : this(username, title, "", communityId, R.drawable.profile, "", text)
 }
