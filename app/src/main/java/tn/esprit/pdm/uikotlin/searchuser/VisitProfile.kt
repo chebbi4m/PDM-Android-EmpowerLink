@@ -31,7 +31,7 @@ binding.tvFullname.setOnClickListener(){
 
 }
         binding.imageView3.setOnClickListener(){
-        startActivity(Intent(this@VisitProfile,SearchUsersActivity::class.java))
+        startActivity(Intent(this@VisitProfile,SearchUsersActivity::class.java).apply {   addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK) })
         }
         binding.follow.setOnClickListener(){
             followUser()

@@ -2,23 +2,30 @@ package tn.esprit.pdm.uikotlin.experience
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import tn.esprit.pdm.R
 import tn.esprit.pdm.models.Experience
 import tn.esprit.pdm.utils.RetrofitInstance
+import tn.esprit.pdm.utils.RetrofitInstance.experienceService
 
 class ExperienceActivity : AppCompatActivity() {
 
     private val apiService = RetrofitInstance.createApiService()
     private lateinit var communityExperiences: MutableList<Experience>
-    private lateinit var experienceAdapter: ExperienceAdapter
+    private lateinit var experienceAdapter: NewExperienceAdapter
     private lateinit var recyclerView: RecyclerView
+    private lateinit var inputLayout: TextInputLayout
+    private lateinit var inputEditText: TextInputEditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +36,38 @@ class ExperienceActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.experienceRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        inputLayout = findViewById(R.id.inputLayout)
+        inputEditText = findViewById(R.id.experienceSentText)
+
+        val addButton: ImageButton = findViewById(R.id.sendButton)
+        addButton.setOnClickListener {
+            val inputText = inputEditText.text.toString()
+            if (inputText.isNotEmpty()) {
+                val username = "wassim"
+                val experience = Experience(username = username, experienceText = inputText, communityId = communityId.toString())
+                addExperience(experience)
+
+                // Clear the input field
+                inputEditText.text = null
+
+                lifecycleScope.launch {
+                    withContext(Dispatchers.IO) {
+                        try {
+                            val response = experienceService.createExperience(experience)
+                            if (response.isSuccessful) {
+
+                            } else {
+
+                            }
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                            // Handle network error
+                        }
+                    }
+                }
+            }
+        }
 
         lifecycleScope.launch(Dispatchers.Main) {
             try {
@@ -43,28 +82,14 @@ class ExperienceActivity : AppCompatActivity() {
                 Log.e("ApiError", e.message ?: "Unknown error")
             }
         }
-
-        val addButton: FloatingActionButton = findViewById(R.id.addButton)
-        // Inside addButton.setOnClickListener
-        addButton.setOnClickListener {
-            // Show the AddExperienceFragment as a dialog
-            val addExperienceFragment = AddExperienceFragment(
-                communityId.toString(),
-                { experience -> onExperienceAddedSuccessfully(experience, communityId.toString()) }
-            )
-            addExperienceFragment.show(supportFragmentManager, "addExperienceDialog")
-        }
-
     }
 
     private fun updateUI(communityExperiences: List<Experience>) {
-        // Define the item click callback
         val onItemClick: (Experience) -> Unit = { clickedExperience ->
-            // Handle item click as needed
             Log.d("ExperienceClicked", "Clicked on experience: ${clickedExperience.experienceTitle}")
         }
 
-        experienceAdapter = ExperienceAdapter(this@ExperienceActivity, communityExperiences, onItemClick)
+        experienceAdapter = NewExperienceAdapter(this@ExperienceActivity, communityExperiences, onItemClick)
         recyclerView.adapter = experienceAdapter
     }
 
@@ -72,10 +97,9 @@ class ExperienceActivity : AppCompatActivity() {
         recyclerView.scrollToPosition(communityExperiences.size - 1)
     }
 
-    private fun onExperienceAddedSuccessfully(experience: Experience,communityId :String) {
+    private fun onExperienceAddedSuccessfully(experience: Experience, communityId: String) {
         addExperience(experience)
 
-        // Fetch all experiences again and update the UI
         lifecycleScope.launch(Dispatchers.Main) {
             try {
                 val fetchedExperiences = apiService.getExperiencesByCommunity(communityId.toLong())
@@ -90,15 +114,9 @@ class ExperienceActivity : AppCompatActivity() {
         }
     }
 
-
     private fun addExperience(experience: Experience) {
-        // Add the new experience to the end of your dataset
         communityExperiences.add(experience)
-
-        // Notify the adapter that the dataset has changed
-        recyclerView.adapter?.notifyItemInserted(communityExperiences.size - 1)
-
-        // Scroll to the newly added item
+        recyclerView.adapter?.notifyDataSetChanged()
         scrollToBottom()
     }
 }

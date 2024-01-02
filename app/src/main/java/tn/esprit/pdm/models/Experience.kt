@@ -17,4 +17,8 @@ data class Experience(
             : this(username, title, "", communityId, R.drawable.profile, experienceDate, experienceText)
     constructor(username: String, title: String, communityId: String, text: String)
             : this(username, title, "", communityId, R.drawable.profile, "", text)
+    constructor(experienceText: String)
+            : this("", "", "", "", R.drawable.profile, "", experienceText)
+    constructor(username: String,experienceText: String,communityId: String)
+            : this(username, "", "", communityId,1, "", experienceText)
 }

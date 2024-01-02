@@ -15,6 +15,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import tn.esprit.pdm.uikotlin.hospital.Addhopital
 import tn.esprit.pdm.uikotlin.hospital.DetailsHospital
+import tn.esprit.pdm.uikotlin.login.EditProfileActivity
+import tn.esprit.pdm.uikotlin.login.LoginActivite
 
 
 class SocialServiceActivity : AppCompatActivity() {
@@ -53,11 +55,13 @@ class SocialServiceActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             ).show()
 
-                            // Naviguer vers la page de détails avec le nom de l'hôpital en tant qu'extra
+                            // Navigate to the DetailsHospital activity with the hospital name as an extra
                             val intent = Intent(this@SocialServiceActivity, DetailsHospital::class.java)
                             intent.putExtra("hospital_name", selectedItem)
                             startActivity(intent)
                         }
+
+
                     } else {
                         Toast.makeText(
                             this@SocialServiceActivity,

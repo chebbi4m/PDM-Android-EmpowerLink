@@ -1,21 +1,78 @@
 <!-- fragment_create_community.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginBottom="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="50dp"
     android:orientation="vertical"
-    android:padding="25dp"
+    android:padding="30dp"
     tools:context=".uikotlin.opportunity.Addopportunite">
 
+    <!-- Skill -->
+
+    <!-- Contact Email -->
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="               Ajouter Opportunite"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="351dp"
+        android:layout_height="100dp"
+        android:src="@drawable/architecte_applications_mobiles" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="ExtraText">
+
+    </FrameLayout>
+
+
+    <EditText
+        android:id="@+id/opportuniteSkillEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="Skill" />
+
+    <EditText
+        android:id="@+id/opportuniteContactEmailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="Contact Email" />
+
+    <!-- Salary -->
+    <EditText
+        android:id="@+id/opportuniteSalaryEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="Salary" />
+
+    <!-- Nom Entreprise -->
+    <EditText
+        android:id="@+id/opportuniteNomEntrepriseEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="Nom Entreprise" />
+
+    <!-- Title -->
     <EditText
         android:id="@+id/opportuniteTitleEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:hint="title"
-        android:minWidth="150dp" />
+        android:hint="Title" />
 
+    <!-- Description -->
     <EditText
         android:id="@+id/opportuniteDescriptionEditText"
         android:layout_width="match_parent"
@@ -23,11 +80,28 @@
         android:layout_marginBottom="10dp"
         android:hint="Description" />
 
+    <!-- Lieu -->
+    <EditText
+        android:id="@+id/opportuniteLieuEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="Lieu" />
+
+    <!-- Type de contrat -->
+    <EditText
+        android:id="@+id/opportuniteTypeDeContratEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="Type de Contrat" />
 
 
+    <!-- Ajout opportunite Button -->
     <Button
         android:id="@+id/ajoutopportuniteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ajout opportunite" />
+
 </LinearLayout>

@@ -23,7 +23,7 @@ interface apiOpportunite {
 
     companion object {
 
-        var BASE_URL = "http://192.168.139.1:9090/"
+        var BASE_URL = "http://10.0.2.2:9090/"
 
         fun create() : apiOpportunite {
 
@@ -34,7 +34,9 @@ interface apiOpportunite {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
             return retrofit.create(apiOpportunite::class.java)
-        }}
+        }
+
+    }
     data class AddParticipantRequest(
         val opportunityId: String,
         val userId: String

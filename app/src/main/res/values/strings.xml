@@ -35,6 +35,10 @@
     <string name="newuser"> New User? <u>Create new account</u></string>
     <string name="edit">Edit Compte</string>
 
+
+    <string name="member_count">Members: %1$d</string>
+
+
     <!--  ErrorsMessages  -->
     <string name="msg_must_not_be_empty">Must not be empty!</string>
     <string name="msg_check_your_email">Must be a valid email!</string>

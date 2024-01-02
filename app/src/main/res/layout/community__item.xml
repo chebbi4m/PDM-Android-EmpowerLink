@@ -1,5 +1,6 @@
 <!-- community_item.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
@@ -10,7 +11,8 @@
         android:id="@+id/communityImage"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -23,6 +25,7 @@
             android:id="@+id/communityName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="community name"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -30,8 +33,32 @@
             android:id="@+id/communityCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="community category"
             android:textColor="@android:color/darker_gray"
             android:textSize="14sp" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/memberCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/pinButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:background="?android:selectableItemBackground"
+            android:scaleType="fitXY"
+            android:src="@drawable/thumbtacks" />
     </LinearLayout>
 </LinearLayout>

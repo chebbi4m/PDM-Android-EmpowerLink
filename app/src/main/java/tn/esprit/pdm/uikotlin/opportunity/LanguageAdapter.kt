@@ -16,12 +16,12 @@ class LanguageAdapter(var mList: List<LanguageData>) :
     inner class LanguageViewHolder(itemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
         val desc : ImageView = itemView.findViewById(R.id.logoIv)
         val titleTv : TextView = itemView.findViewById(R.id.titleTv)
-init {
-    itemView.setOnClickListener{
+        init {
+            itemView.setOnClickListener{
 
-        listener.onItemClick(adapterPosition)
-    }
-}
+                listener.onItemClick(adapterPosition)
+            }
+        }
     }
 
     fun setFilteredList(mList: List<LanguageData>){
@@ -29,18 +29,18 @@ init {
         notifyDataSetChanged()
     }
 
-private lateinit var description : onItemClickListener
+    private lateinit var description : onItemClickListener
 
-interface onItemClickListener{
+    interface onItemClickListener{
 
-    fun onItemClick(position: Int)
+        fun onItemClick(position: Int)
 
-}
+    }
 
-fun setOnItemClickListener(listener: onItemClickListener){
+    fun setOnItemClickListener(listener: onItemClickListener){
 
-    description = listener
-}
+        description = listener
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LanguageViewHolder {
@@ -54,6 +54,6 @@ fun setOnItemClickListener(listener: onItemClickListener){
     }
 
     override fun getItemCount(): Int {
-      return mList.size
+        return mList.size
     }
 }

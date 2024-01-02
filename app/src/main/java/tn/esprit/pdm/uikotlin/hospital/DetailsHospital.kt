@@ -2,8 +2,10 @@ package tn.esprit.pdm.uikotlin.hospital
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,10 +17,13 @@ import retrofit2.Callback
 import retrofit2.Response
 
 import tn.esprit.pdm.R
+import tn.esprit.pdm.models.Soins
 
 
 class DetailsHospital : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsHospitalBinding
+    private val soinsList = ArrayList<Soins>()
+    private lateinit var soinsAdapter: ArrayAdapter<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +35,10 @@ class DetailsHospital : AppCompatActivity() {
         val textView11 = findViewById<TextView>(R.id.textView11)
         val hopitalId = intent.getStringExtra("hopitalId")
         val hopitalName = intent.getStringExtra("hospital_name")
+        val listViewServices = findViewById<ListView>(R.id.listViewServices)
+        soinsAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, ArrayList<String>())
+        listViewServices.adapter = soinsAdapter
+        fetchSoins()
 
         if (hopitalId != null) {
             val apiHopital = apiHopital.create()
@@ -109,5 +118,38 @@ class DetailsHospital : AppCompatActivity() {
             // Mettre à jour les autres vues si nécessaire
         }
     }
+    private fun fetchSoins() {
+        val apiService = apiHopital.create()
+        apiService.getSoins().enqueue(object : Callback<List<Soins>> {
+            override fun onResponse(call: Call<List<Soins>>, response: Response<List<Soins>>) {
+                if (response.isSuccessful) {
+                    val soins = response.body()
+                    if (soins != null) {
+                        // Clear existing list and add new data
+                        soinsList.clear()
+                        soinsList.addAll(soins)
+                        // Extract the names and notify the adapter
+                        val soinsNames = soins.map { it.nom.orEmpty() }
+                        soinsAdapter.clear()
+                        soinsAdapter.addAll(soinsNames)
+                        soinsAdapter.notifyDataSetChanged()
+                    } else {
+                        // Handle errors here
+                    }
+                } else {
+                    // Handle errors here
+                }
+            }
+
+            override fun onFailure(call: Call<List<Soins>>, t: Throwable) {
+                // Handle errors here
+            }
+        })
+    }
+
+    private fun displaySoins(soins: List<Soins>) {
+        // Display the list of soins
+    }
+
 
 }

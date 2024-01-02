@@ -42,7 +42,13 @@ class Addopportunite :AppCompatActivity(){
 
         val addopprtunite = Opportunite(
             title = binding.opportuniteTitleEditText.text.toString(),
-            description = binding.opportuniteDescriptionEditText.text.toString()
+            description = binding.opportuniteDescriptionEditText.text.toString(),
+            skill = binding.opportuniteSkillEditText.text.toString(),
+            contactEmail = binding.opportuniteContactEmailEditText.text.toString(),
+            salary = binding.opportuniteSalaryEditText.text.toString(),
+            nomEntreprise = binding.opportuniteNomEntrepriseEditText.text.toString(),
+            lieu = binding.opportuniteLieuEditText.text.toString(),
+            Typedecontrat = binding.opportuniteTypeDeContratEditText.text.toString()
         )
 
         // Appeler la méthode d'inscription de l'API

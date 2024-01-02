@@ -60,14 +60,14 @@
         @GET("user/countFollowing/{userId}")
         fun countFollowing(@Path("userId") userId: String): Call<JsonObject>
 
-        @POST("user/verifygoogle")
+        @POST("user/google/callback")
         suspend fun signinGoogle (@Body googleToken: JsonObject) : JsonObject
 
 
 
         companion object {
 
-            var BASE_URL = "http://192.168.139.1:9090/"
+            var BASE_URL = "http://10.0.2.2:9090/"
 
             fun create() : Apiuser {
 

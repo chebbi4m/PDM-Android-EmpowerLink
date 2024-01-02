@@ -85,9 +85,9 @@
         <activity
             android:name=".uikotlin.opportunity.OppoptunityActivity"
             android:exported="false" />
-        <activity
-            android:name=".uikotlin.hospital.DetailsHospital"
-            android:exported="false" />
+        <activity android:name=".uikotlin.hospital.DetailsHospital"
+            android:label="Details Hospital"
+            android:exported="false"/>
         <activity
             android:name=".uikotlin.hospital.HospitalListView"
             android:exported="false" />
@@ -108,9 +108,6 @@
         </activity>
         <activity
             android:name=".uikotlin.community.CommunityActivity"
-            android:exported="true" />
-        <activity
-            android:name=".uikotlin.experience.CommunityExperiencesActivity"
             android:exported="true" />
         <activity
             android:name=".uikotlin.experience.ExperienceActivity"

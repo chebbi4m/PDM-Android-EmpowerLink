@@ -2,6 +2,7 @@ package tn.esprit.pdm.utils
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import tn.esprit.gamer.utils.CommunityServices
 
 object RetrofitInstance {
     private const val BASE_URL = "http://10.0.2.2:9090"

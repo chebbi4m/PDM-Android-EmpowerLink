@@ -9,6 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 import tn.esprit.pdm.models.Servicesoc
+import tn.esprit.pdm.models.Soins
 
 interface apiHopital {
     @POST("service/add")
@@ -19,6 +20,9 @@ interface apiHopital {
 
     @GET("service/getServiceSociauByNom/{nom}")
     fun getHopitalDetails(@Path("nom") nom: String): Call<Servicesoc>
+
+    @GET("soin/all")
+    fun getSoins(): Call<List<Soins>>
 
     companion object {
 

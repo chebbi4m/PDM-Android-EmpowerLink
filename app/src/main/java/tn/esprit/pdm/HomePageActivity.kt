@@ -75,14 +75,11 @@ class HomePageActivity : AppCompatActivity() {
         // Decode the token
         val decodedToken = sessionManager.decodeToken(token)
 
-        communityRecyclerView = findViewById(R.id.homePageRecyclerView)
-        communityRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         suggestionAdapter = SuggestionAdapter(emptyList())
         suggestionList = findViewById(R.id.suggesion)
         suggestionList.adapter = suggestionAdapter
         suggestionList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         fetchSuggestions()
-        refreshRecyclerView()
         binding.textView6.text = decodedToken.username
         Glide.with(this).load(decodedToken.image)
             .circleCrop()
@@ -163,25 +160,7 @@ class HomePageActivity : AppCompatActivity() {
         } else super.onOptionsItemSelected(item)
     }
 
-    private fun refreshRecyclerView() {
-        thread {
-            val apiResponse = fetchDataFromApi("http://10.0.2.2:9090/experience/getExperiencesSortedByDate/")
-            val experiences = parseApiResponse(apiResponse)
 
-            Handler(Looper.getMainLooper()).post {
-                val adapter = ExperienceAdapter(this, experiences) { selectedExperience ->
-                    openExperienceActivity(selectedExperience.experienceId)
-                }
-                communityRecyclerView.adapter = adapter
-            }
-        }
-    }
-
-    private fun openExperienceActivity(experienceId: String) {
-        val intent = Intent(this, ExperienceActivity::class.java)
-        intent.putExtra("experienceId", experienceId)
-        startActivity(intent)
-    }
 
     private fun fetchDataFromApi(apiUrl: String): String {
         return try {
@@ -203,32 +182,7 @@ class HomePageActivity : AppCompatActivity() {
         }
     }
 
-    private fun parseApiResponse(apiResponse: String): List<Experience> {
-        val experiences = mutableListOf<Experience>()
 
-        try {
-            val json = JSONObject(apiResponse)
-            val experiencesArray = json.getJSONArray("experiences")
-
-            for (i in 0 until experiencesArray.length()) {
-                val experienceJson = experiencesArray.getJSONObject(i)
-                val id = experienceJson.getString("experienceId")
-                val communityId = experienceJson.getString("communityId")
-                val image = R.drawable.profile // Replace with actual image data
-                val title = experienceJson.getString("title")
-                val username = "username_placeholder"
-                val experienceDate = experienceJson.optString("createdAt", null)
-                val experienceText = experienceJson.optString("text", null)
-
-                experiences.add(Experience(username, title, id, communityId, image, experienceDate, experienceText))
-            }
-
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-        return experiences
-    }
 
     private fun logout() {
         sessionManager = SessionManager(this)

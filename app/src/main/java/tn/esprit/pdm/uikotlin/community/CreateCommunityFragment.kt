@@ -10,10 +10,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import tn.esprit.gamer.utils.CommunityServices
 import tn.esprit.pdm.R
 import tn.esprit.pdm.models.CommunityDTO
 import tn.esprit.pdm.uikotlin.SessionManager
-import tn.esprit.pdm.utils.CommunityServices
 import tn.esprit.pdm.utils.RetrofitInstance
 
 class CreateCommunityFragment : DialogFragment() {
