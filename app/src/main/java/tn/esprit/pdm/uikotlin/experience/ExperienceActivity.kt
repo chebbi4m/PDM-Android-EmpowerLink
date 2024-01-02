@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,6 +28,7 @@ class ExperienceActivity : AppCompatActivity() {
     private lateinit var inputLayout: TextInputLayout
     private lateinit var inputEditText: TextInputEditText
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_experience)
@@ -46,7 +48,6 @@ class ExperienceActivity : AppCompatActivity() {
             if (inputText.isNotEmpty()) {
                 val username = "wassim"
                 val experience = Experience(username = username, experienceText = inputText, communityId = communityId.toString())
-                addExperience(experience)
 
                 // Clear the input field
                 inputEditText.text = null
@@ -56,9 +57,17 @@ class ExperienceActivity : AppCompatActivity() {
                         try {
                             val response = experienceService.createExperience(experience)
                             if (response.isSuccessful) {
+                                val experienceResponse = response.body()
+                                if (experienceResponse != null) {
 
+                                    addExperience(experience, communityId)
+                                    val apiResponse = experienceResponse.apiResponse
+                                    val warningTextField: TextView = findViewById(R.id.warningText)
+                                    warningTextField.text = apiResponse
+                                    Log.d("ApiResponse", "API Response: $apiResponse")
+                                }
                             } else {
-
+                                // Handle unsuccessful response
                             }
                         } catch (e: Exception) {
                             e.printStackTrace()
@@ -68,6 +77,7 @@ class ExperienceActivity : AppCompatActivity() {
                 }
             }
         }
+
 
         lifecycleScope.launch(Dispatchers.Main) {
             try {
@@ -98,7 +108,7 @@ class ExperienceActivity : AppCompatActivity() {
     }
 
     private fun onExperienceAddedSuccessfully(experience: Experience, communityId: String) {
-        addExperience(experience)
+        addExperience(experience,communityId.toInt())
 
         lifecycleScope.launch(Dispatchers.Main) {
             try {
@@ -114,9 +124,26 @@ class ExperienceActivity : AppCompatActivity() {
         }
     }
 
-    private fun addExperience(experience: Experience) {
-        communityExperiences.add(experience)
-        recyclerView.adapter?.notifyDataSetChanged()
-        scrollToBottom()
+    private fun addExperience(experience: Experience ,communityId: Int) {
+        // Clear the existing list
+        communityExperiences.clear()
+
+        // Fetch the updated list of experiences
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val fetchedExperiences = apiService.getExperiencesByCommunity(communityId.toLong())
+                communityExperiences.addAll(fetchedExperiences)
+                withContext(Dispatchers.Main) {
+                    // Notify the adapter about the data change
+                    experienceAdapter.notifyDataSetChanged()
+                    // Scroll to the bottom of the RecyclerView
+                    scrollToBottom()
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e("ApiError", e.message ?: "Unknown error")
+            }
+        }
     }
+
 }

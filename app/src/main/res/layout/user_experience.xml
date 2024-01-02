@@ -26,6 +26,14 @@
             android:layout_marginTop="10dp"
             android:text="Experience Text" />
 
+        <TextView
+            android:id="@+id/warningText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="#F44336"
+            android:textSize="10sp" />
+
         <!-- Your other experience item views go here -->
 
     </LinearLayout>
